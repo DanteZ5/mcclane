@@ -10,10 +10,68 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226153606) do
+ActiveRecord::Schema.define(version: 20180226165032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "colevents", force: :cascade do |t|
+    t.boolean "safe"
+    t.string "safe_time"
+    t.bigint "collaborator_id"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collaborator_id"], name: "index_colevents_on_collaborator_id"
+    t.index ["event_id"], name: "index_colevents_on_event_id"
+  end
+
+  create_table "collaborators", force: :cascade do |t|
+    t.string "email"
+    t.string "phone_pro"
+    t.string "phone_perso"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "continent"
+    t.string "country"
+    t.string "city"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_collaborators_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.string "status"
+    t.string "end_date"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "question_content"
+    t.string "status"
+    t.string "answer_content"
+    t.string "answer_time"
+    t.string "phone_number"
+    t.bigint "colevent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["colevent_id"], name: "index_messages_on_colevent_id"
+  end
+
+  create_table "templates", force: :cascade do |t|
+    t.integer "slot"
+    t.string "content"
+    t.integer "order"
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_templates_on_event_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +90,10 @@ ActiveRecord::Schema.define(version: 20180226153606) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "colevents", "collaborators"
+  add_foreign_key "colevents", "events"
+  add_foreign_key "collaborators", "users"
+  add_foreign_key "events", "users"
+  add_foreign_key "messages", "colevents"
+  add_foreign_key "templates", "events"
 end

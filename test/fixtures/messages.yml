@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question_content: MyString
+  status: MyString
+  answer_content: MyString
+  answer_time: MyString
+  phone_number: MyString
+  colevent: one
+
+two:
+  question_content: MyString
+  status: MyString
+  answer_content: MyString
+  answer_time: MyString
+  phone_number: MyString
+  colevent: two

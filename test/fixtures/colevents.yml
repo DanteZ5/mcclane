@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  safe: false
+  safe_time: MyString
+  collaborator: one
+  event: one
+
+two:
+  safe: false
+  safe_time: MyString
+  collaborator: two
+  event: two
