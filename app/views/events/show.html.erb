@@ -1,0 +1,34 @@
+<h1>Show Event</h1>
+<h2>@event.name | @event.status</h2>
+
+<%= @event.collaborators.each do |collaborator| %>
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Dante</td>
+      <td>Maximilien</td>
+      <td>Money</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Planterose</td>
+      <td>R.</td>
+      <td>Nass</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>TODO : collaborat</td>
+      <td>safe</td>
+      <td>unknown</td>
+    </tr>
+  </tbody>
+</table>
