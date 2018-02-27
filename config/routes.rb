@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "pages#home"
-  # devise_scope :user do
-  #   root to: "devise/sessions#new"
-  # end
+
+  authenticated :user do
+    root 'pages#home', as: :authenticated_root
+  end
+
+  root to: redirect("/users/sign_in")
 
   resources :events
   resources :colevents, only: :show do
