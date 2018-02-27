@@ -25,15 +25,15 @@ puts "creating collaborators"
 
 collaborators_attributes = [
 { email: 'nassim@gmail.com', phone_pro: '0610257263', first_name: "Nassim",
-last_name: "Mezouar", country: "France", user_id: User.first.id},
+last_name: "Mezouar", continent:"Europe", country: "France", city: "Paris", user_id: User.first.id},
 { email: 'dante@gmail.com', phone_pro: '0634264547', first_name: "Dante",
-last_name: "Planterose", country: "Italie", user_id: User.first.id},
+last_name: "Planterose", continent:"Africa", country: "Senegal", city: "Dakar", user_id: User.first.id},
 { email: 'thibaud@gmail.com', phone_pro: '0786091509', first_name: "Thibaud",
-last_name: "Vuitton", country: "France", user_id: User.first.id},
+last_name: "Vuitton", continent:"Europe", country: "France", city: "Lyon", user_id: User.first.id},
 { email: 'maximilien@gmail.com', phone_pro: '0681256797', first_name: "Maxmilien",
-last_name: "Rufin", country: "France", user_id: User.first.id},
+last_name: "Rufin", continent:"Europe", country: "France", city: "Paris", user_id: User.first.id},
 { email: 'thomas@gmail.com', phone_pro: '0681257797', first_name: "Thomas",
-last_name: "Sertorio", country: "France", user_id: User.last.id}
+last_name: "Sertorio", continent:"Europe", country: "France", city: "Paris", user_id: User.last.id}
 ]
 
 collaborators = Collaborator.create!(collaborators_attributes)
