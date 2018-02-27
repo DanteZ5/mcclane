@@ -7,8 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "cleaning dB"
-Event.destroy_all
+
+Colevent.destroy_all
 Collaborator.destroy_all
+Event.destroy_all
 User.destroy_all
 
 puts "creating users"
@@ -25,15 +27,15 @@ puts "creating collaborators"
 
 collaborators_attributes = [
 { email: 'nassim@gmail.com', phone_pro: '0610257263', first_name: "Nassim",
-last_name: "Mezouar", country: "France", user_id: User.first.id},
+last_name: "Mezouar", country: "France", user: User.first},
 { email: 'dante@gmail.com', phone_pro: '0634264547', first_name: "Dante",
-last_name: "Planterose", country: "Italie", user_id: User.first.id},
+last_name: "Planterose", country: "Italie", user: User.first},
 { email: 'thibaud@gmail.com', phone_pro: '0786091509', first_name: "Thibaud",
-last_name: "Vuitton", country: "France", user_id: User.first.id},
+last_name: "Vuitton", country: "France", user: User.first},
 { email: 'maximilien@gmail.com', phone_pro: '0681256797', first_name: "Maxmilien",
-last_name: "Rufin", country: "France", user_id: User.first.id},
+last_name: "Rufin", country: "France", user: User.first},
 { email: 'thomas@gmail.com', phone_pro: '0681257797', first_name: "Thomas",
-last_name: "Sertorio", country: "France", user_id: User.last.id}
+last_name: "Sertorio", country: "France", user: User.last}
 ]
 
 collaborators = Collaborator.create!(collaborators_attributes)
@@ -41,20 +43,16 @@ collaborators = Collaborator.create!(collaborators_attributes)
 puts "creating events"
 
 events_attributes = [
-{ name: "Tsunami", user_id: User.first.id },
-{ name: "Attaque HQ", end_date: "12/12/2017", user_id: User.first.id } ]
+{ name: "Tsunami", user: User.first },
+{ name: "Attaque HQ", end_date: "12/12/2017", user: User.first } ]
 
 events = Event.create!(events_attributes)
 
-puts "OK done!"
+puts "creating colevent"
 
-# colevents_attributes = [
-# {
+  collabos = Collaborator.joins(:user).where(users: {company: 'Le Wagon'}, collaborators: {country: "France"} )
+  collabos.each do |collabo|
+   Colevent.create(event: Event.find_by(name: "Tsunami"), collaborator: collabo, safe: false)
+  end
 
-#   }]
-
-# collabs = Collaborator.all
-# collab.each do
-
-
-
+ puts "OK done!"
