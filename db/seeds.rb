@@ -7,8 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "cleaning dB"
-Event.destroy_all
+
+Colevent.destroy_all
 Collaborator.destroy_all
+Event.destroy_all
 User.destroy_all
 
 puts "creating users"
@@ -41,20 +43,16 @@ collaborators = Collaborator.create!(collaborators_attributes)
 puts "creating events"
 
 events_attributes = [
-{ name: "Tsunami", user_id: User.first.id },
-{ name: "Attaque HQ", end_date: "12/12/2017", user_id: User.first.id } ]
+{ name: "Tsunami", user: User.first },
+{ name: "Attaque HQ", end_date: "12/12/2017", user: User.first } ]
 
 events = Event.create!(events_attributes)
 
-puts "OK done!"
+puts "creating colevent"
 
-# colevents_attributes = [
-# {
+  collabos = Collaborator.joins(:user).where(users: {company: 'Le Wagon'}, collaborators: {country: "France"} )
+  collabos.each do |collabo|
+   Colevent.create(event: Event.find_by(name: "Tsunami"), collaborator: collabo, safe: false)
+  end
 
-#   }]
-
-# collabs = Collaborator.all
-# collab.each do
-
-
-
+ puts "OK done!"
