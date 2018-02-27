@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   authenticated :user do
-    root 'pages#home', as: :authenticated_root
+    root 'events#new', as: :authenticated_root
   end
 
   root to: redirect("/users/sign_in")
