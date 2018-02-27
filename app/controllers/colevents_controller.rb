@@ -1,0 +1,2 @@
+class ColeventsController < ApplicationController
+end
