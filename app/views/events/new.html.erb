@@ -1,1 +1,16 @@
-<h1>ICI BIENTOT CREEZ VOTRE ALERTE POUR 29euros ttc (unless event.status == "ongoing"</h1>
+<h1>FORM ALERT CREATION (unless event.status == "ongoing")</h1>
+
+<%= simple_form_for @event do |f| %>
+  <%= f.fields_for :search do |search_form|  %>
+    <%= search_form.input :continent, collection: Collaborator.distinct.pluck(:continent) %>
+    <%= search_form.input :country, as: :select, collection: Collaborator.distinct.pluck(:country) %>
+    <%= search_form.input :city, collection: Collaborator.distinct.pluck(:city) %>
+  <% end  %>
+
+  <%= f.fields_for :template do |template_form| %>
+    <%= template_form.input :content %>
+  <% end %>
+
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>
+

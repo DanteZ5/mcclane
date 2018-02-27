@@ -13,13 +13,22 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.name = "#{Time.now}"
     @event.status = "ongoing"
-
+    @event.user = current_user
     if @event.save
+      collaborators = Collaborator.where(country: params[:event][:search][:country], city: params[:event][:search][:city])
+      message = params[:event][:template][:content]
+      template = Template.create(content: message, event: @event, slot: 5, order: 0)
+      collaborators.each do |collaborator|
+        colevent = Colevent.create(collaborator: collaborator, event: @event, safe: false)
+        Message.create(question_content: message, colevent: colevent)
+      end
       redirect_to event_path(@event)
     else
       render :new
     end
   end
+
+
 
   def show
   end
