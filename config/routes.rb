@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/create'
+
   devise_for :users
   root to: "events#new"
 
@@ -10,5 +12,9 @@ Rails.application.routes.draw do
   resources :colevents, only: :show do
     resources :messages, only: [:new, :create]
   end
+
+
+  # route temporaire a supprimer a la fin. utilisee pour test Twilio
+  resources :messages, only: [:new, :create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
