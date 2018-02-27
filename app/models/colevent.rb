@@ -7,5 +7,5 @@ class Colevent < ApplicationRecord
 end
 
 def default_values
-    self.safe ||= false
-  end
+  self.safe ||= false
+end
