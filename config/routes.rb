@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_scope :user do
-    root to: "devise/sessions#new"
-  end
+  root to: "pages#home"
+  # devise_scope :user do
+  #   root to: "devise/sessions#new"
+  # end
 
   resources :events
   resources :colevents, only: :show do
