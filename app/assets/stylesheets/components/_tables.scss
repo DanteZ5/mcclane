@@ -1,0 +1,33 @@
+.table-dark {
+  color: #fff;
+  background-color: #020205;
+}
+.bg-success {
+  background-color: #17b978!important;
+}
+.bg-warning {
+  background-color: #E67E22!important;
+}
+.bg-danger {
+  background-color: #E43A19!important;
+}
+.actions-icons {
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+}
+.actions-icons :hover {
+  text-decoration: none;
+}
+.white {
+  color: white;
+}
+.table-space {
+  margin-top: 20px;
+}
+.input-search {
+  margin: 0px auto;
+  width: 300px;
+  text-align: center;
+  display: block;
+}
