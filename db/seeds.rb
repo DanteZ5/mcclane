@@ -30,7 +30,7 @@ last_name: "Mezouar", country: "France", user_id: User.first.id},
 last_name: "Planterose", country: "Italie", user_id: User.first.id},
 { email: 'thibaud@gmail.com', phone_pro: '0786091509', first_name: "Thibaud",
 last_name: "Vuitton", country: "France", user_id: User.first.id},
-{ email: 'maximilien@gmail.com', phone_pro: '0681257797', first_name: "Maxmilien",
+{ email: 'maximilien@gmail.com', phone_pro: '0681256797', first_name: "Maxmilien",
 last_name: "Rufin", country: "France", user_id: User.first.id},
 { email: 'thomas@gmail.com', phone_pro: '0681257797', first_name: "Thomas",
 last_name: "Sertorio", country: "France", user_id: User.last.id}
