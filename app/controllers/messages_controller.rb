@@ -2,19 +2,20 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
+    @colevent = Colevent.find(params[:colevent_id])
   end
 
   def create
-    account_sid = ENV["account_sid"] # Your Account SID from www.twilio.com/console
-    auth_token = ENV["auth_token"]   # Your Auth Token from www.twilio.com/console
-    body = params[:message][:question_content]
-    to = params[:message][:phone_number]
+    @message = Message.new(message_params)
+    @message.colevent_id = params[:colevent_id]
+    @message.save
+    @message.send_sms
+  end
 
-    @client = Twilio::REST::Client.new account_sid, auth_token
+  private
 
-    message = @client.messages.create(
-        body: body,
-        to: to,    # Replace with your phone number
-        from: "+33644603214")  # Replace with your Twilio number
+  def message_params
+    #white list
+    params.require(:message).permit(:question_content, :status, :answer_content, :answer_time, :phone_number, :colevent_id)
   end
 end

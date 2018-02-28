@@ -1,4 +1,10 @@
 class Message < ApplicationRecord
   belongs_to :colevent
-  # appliquer les regles des que possible
+    # call method job to send sms
+
+  def send_sms
+    SmsJob.perform_later(self.id)
+  end
+
+  # !!appliquer les regles des que possible
 end
