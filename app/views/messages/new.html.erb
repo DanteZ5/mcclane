@@ -1,6 +1,6 @@
 <h1>envoie un SMS avec Twilio</h1>
 
-<%= simple_form_for @message do |f| %>
+<%= simple_form_for [@colevent, @message] do |f| %>
 <%= f.input :question_content, as: :string %>
 <%= f.input :phone_number, as: :string %>
 <%= f.submit "submit" %>
