@@ -1,12 +1,13 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :archive]
-
   def index
-    @events = Event.all
+    @events = policy_scope(Event)
   end
 
   def new
     @event = Event.new
+    @event.user = current_user
+    authorize @event
   end
 
   def create
@@ -14,6 +15,7 @@ class EventsController < ApplicationController
     @event.name = "#{Time.now}"
     @event.status = "ongoing"
     @event.user = current_user
+    authorize @event
     if @event.save
       collaborators = Collaborator.where(country: params[:event][:search][:country], city: params[:event][:search][:city])
       message = params[:event][:template][:content]
@@ -31,6 +33,7 @@ class EventsController < ApplicationController
 
 
   def show
+    authorize @event
   end
 
   def archive
