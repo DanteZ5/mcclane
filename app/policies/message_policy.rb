@@ -1,7 +1,8 @@
 class MessagePolicy < ApplicationPolicy
+
   def new?
-   # @colevent.event.user == user
    record.colevent.event.user == user
+   # raise
   end
 
   def create?
@@ -14,7 +15,7 @@ class MessagePolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      scope.all
+      scope
     end
   end
 end
