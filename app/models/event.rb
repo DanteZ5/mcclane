@@ -11,4 +11,5 @@ class Event < ApplicationRecord
   def default_values
     self.status ||= "ongoing"
   end
+
 end
