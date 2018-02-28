@@ -51,10 +51,12 @@ class EventsController < ApplicationController
     end
   end
 
-
-
   def show
     authorize @event
+    unsafe = @event.colevents.where(safe: false).count
+    total_collaborators = @event.collaborators.count
+    @unsafe_percentage = (unsafe * 100) / total_collaborators
+    @safe_percentage = 100 - @unsafe_percentage
   end
 
   def archive

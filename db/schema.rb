@@ -52,10 +52,9 @@ ActiveRecord::Schema.define(version: 20180227135127) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string "question_content"
+    t.string "content"
     t.string "status"
-    t.string "answer_content"
-    t.string "answer_time"
+    t.string "type"
     t.string "phone_number"
     t.bigint "colevent_id"
     t.datetime "created_at", null: false
