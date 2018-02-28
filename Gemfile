@@ -10,6 +10,8 @@ gem 'puma'
 gem 'rails', '5.1.5'
 gem 'redis'
 gem 'twilio-ruby'
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

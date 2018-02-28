@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :collaborators
   has_many :events
   has_many :colevents, through: :collaborators
+  has_many :messages, through: :colevents
 end
