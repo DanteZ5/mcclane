@@ -6,7 +6,6 @@ class MessagesController < ApplicationController
     @colevent = Colevent.find(params[:colevent_id])
     @colevent.event.user = current_user
     @message.colevent = @colevent
-    raise
     authorize @message
   end
 
