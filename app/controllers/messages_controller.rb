@@ -1,13 +1,24 @@
 class MessagesController < ApplicationController
 
+
   def new
     @message = Message.new
     @colevent = Colevent.find(params[:colevent_id])
+    @colevent.event.user = current_user
+    @message.colevent = @colevent
+    # raise
+    authorize @message
   end
+
+  def show
+    authorize @message
+  end
+
 
   def create
     @message = Message.new(message_params)
     @message.colevent_id = params[:colevent_id]
+    authorize @message
     @message.save
     @message.send_sms
   end
