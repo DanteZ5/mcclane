@@ -1,16 +1,37 @@
-<h1>FORM ALERT CREATION (unless event.status == "ongoing")</h1>
+<!-- Navigation -->
 
-<%= simple_form_for @event do |f| %>
-  <%= f.fields_for :search do |search_form|  %>
-    <%= search_form.input :continent, collection: Collaborator.distinct.pluck(:continent) %>
-    <%= search_form.input :country, as: :select, collection: Collaborator.distinct.pluck(:country) %>
-    <%= search_form.input :city, collection: Collaborator.distinct.pluck(:city) %>
-  <% end  %>
+<div class="container">
+  <div class="main-container">
+    <div class="nav-show">
+     <nav class="nav">
+       <a class="nav-link active" href="#">1. SMS creation</a>
+       <a class="nav-link disabled" href="#">2. Employee selection</a>
+       <a class="nav-link disabled" href="#">3. Alert dashboard</a>
+     </nav>
+    </div>
+  </div>
 
-  <%= f.fields_for :template do |template_form| %>
-    <%= template_form.input :content %>
-  <% end %>
-
-  <%= f.submit "Send", class: "btn btn-primary" %>
-<% end %>
-
+  <div class="main-container">
+    <div class="card-show">
+      <h1>New alert</h1>
+      <%= simple_form_for @event do |f| %>
+        <%= f.fields_for :search do |search_form|  %>
+          <div class="form-inputs">
+            <div class="input-login">
+              <%= search_form.input :continent, collection: Collaborator.distinct.pluck(:continent) %>
+                <%= search_form.input :country, as: :select, collection: Collaborator.distinct.pluck(:country) %>
+                <%= search_form.input :city, collection: Collaborator.distinct.pluck(:city) %>
+              <% end  %>
+              <%= f.fields_for :template do |template_form| %>
+                <%= template_form.input :description, as: :text,
+                placeholder:"Your SMS here"%>
+              <% end %>
+            </div>
+          </div>
+        <div class="form-actions">
+          <%= f.submit "Send", class: "btn-main" %>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</div>
