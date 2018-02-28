@@ -40,9 +40,21 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <li>
+          <%= link_to "#" do %>
+            <i class="fas fa-bell"></i>  <%= t(".index", default: "My alerts") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#" do %>
+            <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fas fa-sign-out-alt"></i>  <%= t(".sign_out", default: "Log out") %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>
