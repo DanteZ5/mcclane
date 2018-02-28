@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: [:listen]
+  skip_before_action :authenticate_user!, only: :listen
 
   def new
     @message = Message.new
@@ -26,14 +26,11 @@ class MessagesController < ApplicationController
   end
 
   def listen
-    @message = params["Body"]
-    account_sid = ENV["account_sid"] # Your Account SID from www.twilio.com/console
-    auth_token = ENV["auth_token"]   # Your Auth Token from www.twilio.com/console
-    # Initialize Twilio Client
-    # @client = Twilio::REST::Client.new(account_sid, auth_token)
-
-    # @call = @client.api.calls('CA42ed11f93dc08b952027ffbc406d0868').fetch
-
+    @message = Message.new
+    @message.content = params["Body"]
+    @message.colevent_id = 3
+    @message.phone_number = params["From"]
+    @message.save
   end
 
   private
