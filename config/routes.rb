@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:new, :create]
   end
 
+  get 'listen', to: "messages#listen", as: 'listen'
 
   # route temporaire a supprimer a la fin. utilisee pour test Twilio
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

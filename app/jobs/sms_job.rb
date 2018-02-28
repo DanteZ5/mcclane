@@ -7,11 +7,13 @@ class SmsJob < ApplicationJob
     auth_token = ENV["auth_token"]   # Your Auth Token from www.twilio.com/console
     @client = Twilio::REST::Client.new account_sid, auth_token
 
-    body = message.question_content
+    body = message.content
     to = message.phone_number
     @client.messages.create(
       body: body,
       to: to,
-      from: message.colevent.event.user.company)
+      from: "+33644603214")
+      # from: message.colevent.event.user.company)
+
   end
 end
