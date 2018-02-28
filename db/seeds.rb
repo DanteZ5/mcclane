@@ -19,7 +19,7 @@ users_attributes = [
 { email: 'rh@lewagon.org', password: 'Clane12', company: 'Le Wagon',
   photo: "https://i.pinimg.com/236x/a5/2c/5a/a52c5a6ff5bbc2b165e805ff30c424ad.jpg"},
 { email: 'rh@total.com', password: 'Clane12', company: 'Total',
-photo: "http://www.creads.fr/blog/wp-content/uploads/2017/02/logo-total-2003.png"}]
+photo: "http://www.tv83.info/wp-content/uploads/2015/05/total.jpg"}]
 
 users = User.create!(users_attributes)
 
