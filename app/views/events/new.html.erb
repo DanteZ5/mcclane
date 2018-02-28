@@ -12,7 +12,39 @@
     </div>
   </div>
 
-<!-- Form (SMS) -->
+<%#= select_tag "timezone", options_from_collection_for_select(
+      ActiveSupport::TimeZone.all.
+        map { |tz| tz.tzinfo }.
+        sort_by { |tzinfo| tzinfo.name },
+      :name, :name),
+      class: 'select2', multiple: "multiple" %>
+
+
+<!-- Form with tags input-->
+<div class="main-container">
+  <div class="card-show">
+    <div class="form-inputs">
+<%= select_tag "continent2", options_from_collection_for_select(
+      @continents, :name, :name),
+      class: 'select2', multiple: "multiple", label: "Continent" %>
+    </div>
+
+    <div class="form-inputs">
+<%= select_tag "Country2", options_from_collection_for_select(
+      @countries, :name, :name),
+      class: 'select2', multiple: "multiple" %>
+    </div>
+
+    <div class="form-inputs">
+<%= select_tag "city2", options_from_collection_for_select(
+      @cities, :name, :name),
+      class: 'select2', multiple: "multiple" %>
+  </div>
+</div>
+
+
+
+<!-- form working old way -->
 
   <div class="main-container">
     <div class="card-show">

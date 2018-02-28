@@ -8,6 +8,27 @@ class EventsController < ApplicationController
     @event = Event.new
     @event.user = current_user
     authorize @event
+    continents = Collaborator.distinct.pluck(:continent)
+    # Continent = Struct.new(:continent, :name, :id)
+    Struct.new("Continent", :continent, :name)
+    @continents = continents.map do |continent|
+      Struct::Continent.new(continent, continent)
+    end
+
+    countries = Collaborator.distinct.pluck(:country)
+    # Continent = Struct.new(:continent, :name, :id)
+    Struct.new("Country", :country, :name)
+    @countries = countries.map do |country|
+      Struct::Country.new(country, country)
+    end
+
+    cities = Collaborator.distinct.pluck(:city)
+    # city = Struct.new(:city, :name, :id)
+    Struct.new("City", :city, :name)
+    @cities = cities.map do |city|
+      Struct::City.new(city, city)
+    end
+
   end
 
   def create
