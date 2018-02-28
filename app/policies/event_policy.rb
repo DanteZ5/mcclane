@@ -6,7 +6,6 @@ class EventPolicy < ApplicationPolicy
 
   def create?
     record.user == user
-    #record, user
   end
 
   def show?
