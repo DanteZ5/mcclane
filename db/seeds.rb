@@ -19,7 +19,10 @@ users_attributes = [
 { email: 'rh@lewagon.org', password: 'Clane12', company: 'Le Wagon',
   photo: "https://i.pinimg.com/236x/a5/2c/5a/a52c5a6ff5bbc2b165e805ff30c424ad.jpg"},
 { email: 'rh@total.com', password: 'Clane12', company: 'Total',
+
 photo: "http://www.tv83.info/wp-content/uploads/2015/05/total.jpg"}]
+{ email: 'admin@mcclane.fr', password: 'Clane42', company: 'McClane',
+  photo: "http://www.mcclane.tech/assets/logo-b7379b39556678c71a83919d7b7bd16aeca78d5e5fc6651f3255c92ad47dd6c0.png", admin: true}]
 
 users = User.create!(users_attributes)
 
