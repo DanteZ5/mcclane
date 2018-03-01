@@ -35,11 +35,10 @@
           <% else %>
             <td>Pending</td>
           <% end %>
-          <td>France, IDF, Paris</td>
+          <td><%= c.collaborator.continent %>, <%= c.collaborator.country %>, <%= c.collaborator.city %></td>
           <td colspan="2" class="actions-icons"><%= link_to "", "#", class: "fas fa-eye white" %><%= link_to "", "#", class: "fas fa-exchange-alt white" %><%= link_to "", "#", class: "fas fa-envelope white" %></td>
         </tr>
         <% end %>
-
       <!-- End employee -->
       </tbody>
     </table>
