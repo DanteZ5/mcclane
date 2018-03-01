@@ -27,7 +27,7 @@
       <% @event.colevents.each do |c| %>
       <!-- Collaborator statuts-name modal call -->
       <%= render partial: "shared/collaborator_status_change",
-      locals: {collaborator: c.collaborator, safe: c.safe} %>
+      locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
       <!-- End of collaborator statuts-name modal call -->
       <% if c.safe? %>
         <tr class="bg-success">
