@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      get "/listen", to: "/api/v1/messages#listen"
-      resources :messages, only: [:show]
+      post "/listen", to: "/api/v1/messages#listen"
+
     end
   end
   # get "api/v1/stuff", to: "/api/v1/messages#stuff"
