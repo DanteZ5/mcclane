@@ -36,7 +36,7 @@ last_name: "Mezouar", continent:"Europe", country: "France", city: "Paris", user
 last_name: "Planterose", continent:"Africa", country: "Senegal", city: "Dakar", user_id: User.first.id},
 { email: 'thibaud@gmail.com', phone_pro: '0786091509', first_name: "Thibaud",
 last_name: "Vuitton", continent:"Europe", country: "France", city: "Lyon", user_id: User.first.id},
-{ email: 'maximilien@gmail.com', phone_pro: '0681256797', first_name: "Maxmilien",
+{ email: 'maximilien@gmail.com', phone_pro: '0681256797', first_name: "Maximilien",
 last_name: "Rufin", continent:"Europe", country: "France", city: "Paris", user_id: User.first.id},
 { email: 'thomas@gmail.com', phone_pro: '0681257797', first_name: "Thomas",
 last_name: "Sertorio", continent:"Europe", country: "France", city: "Paris", user_id: User.last.id}
