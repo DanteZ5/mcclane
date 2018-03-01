@@ -55,6 +55,7 @@ class EventsController < ApplicationController
         message.send_sms if true # change manuellement true / false pour activer / desactiver
       end
       redirect_to event_path(@event)
+
     else
       render :new
     end
