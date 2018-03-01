@@ -26,6 +26,7 @@ class MessagesController < ApplicationController
   end
 
   def listen
+    # authorize @message
     @message = Message.new
     @message.content = params["Body"]
     @message.colevent_id = 3

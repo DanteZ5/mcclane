@@ -13,9 +13,13 @@ class MessagePolicy < ApplicationPolicy
     record.colevent.event.user == user
   end
 
+  def listen?
+    true
+  end
+
   class Scope < Scope
     def resolve
-      scope
+      scope.all
     end
   end
 end
