@@ -1,0 +1,16 @@
+function refreshForm(innerHTML) {
+  const newTemplateForm = document.getElementById('event_template_description');
+  newTemplateForm.innerHTML = innerHTML;
+}
+
+function addTemplate(templateHTML) {
+  const template = document.querySelector('.message');
+  template.insertAdjacentHTML('beforeend', reviewHTML);
+}
+
+<% if @template.errors.any? %>
+  refreshForm('<%= j render "templates/form", event: @event, template: @template %>');
+<% else %>
+  addTemplate('<%= j render "templates/show", template: @template %>');
+  refreshForm('<%= j render "templates/form", event: @event, template: Template.new %>');
+<% end %>
