@@ -1,5 +1,6 @@
 class Api::V1::BaseController < ActionController::Base
   protect_from_forgery with: :exception
+  skip_before_action :verify_authenticity_token
   include Pundit
 
   # after_action :verify_authorized, except: :index
@@ -23,7 +24,7 @@ class Api::V1::BaseController < ActionController::Base
 
   def internal_server_error(exception)
     if Rails.env.development?
-      response = { type: exception.class.to_s, error: exception.message }
+      response = { type: exception.class.to_s, error: exception.message, backtrace: exception.backtrace }
     else
       response = { error: "Internal Server Error" }
     end

@@ -20,17 +20,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      get "/listen", to: "/api/v1/messages#listen"
-      resources :messages, only: [:show]
+      post "/listen", to: "/api/v1/messages#listen"
     end
   end
-  # get "api/v1/stuff", to: "/api/v1/messages#stuff"
-
-
-  # get 'listen', to: "messages#listen", as: 'listen'
-
-  # route temporaire a supprimer a la fin. utilisee pour test Twilio
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-
 end
