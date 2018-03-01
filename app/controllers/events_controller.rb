@@ -37,6 +37,7 @@ class EventsController < ApplicationController
   def create
     # raise
     # Cree une instance Event
+
     @event = Event.new(event_params)
     @event.name = "#{Time.now}"
     @event.status = "ongoing"
