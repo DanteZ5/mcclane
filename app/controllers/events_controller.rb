@@ -72,8 +72,6 @@ class EventsController < ApplicationController
     @event.status = "over"
   end
 
-
-
   private
 
   def event_params
