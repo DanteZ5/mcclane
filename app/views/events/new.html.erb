@@ -11,7 +11,7 @@
      <h1>New alert</h1>
 
 
-      <%= simple_form_for @event, remote: true do |f| %>
+      <%= simple_form_for @event do |f| %>
         <div class="alert-step active">
           <%= f.fields_for :search do |search_form|  %>
             <div class="form-group">
