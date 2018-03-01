@@ -1,6 +1,6 @@
 <div class="container">
 
-<!-- Navigation -->
+  <!-- Navigation -->
 
   <div class="main-container">
     <div class="nav-show">
@@ -12,29 +12,45 @@
     </div>
   </div>
 
-<!-- Form (SMS) -->
 
+  <!-- Form with tags input-->
   <div class="main-container">
     <div class="card-show">
-      <h1>New alert</h1>
+
+     <h1>New alert</h1>
+
+     <div class="form-group">
       <%= simple_form_for @event do |f| %>
-        <%= f.fields_for :search do |search_form|  %>
-          <div class="form-inputs">
-            <div class="input-login">
-              <%= search_form.input :continent, collection: Collaborator.distinct.pluck(:continent) %>
-                <%= search_form.input :country, as: :select, collection: Collaborator.distinct.pluck(:country) %>
-                <%= search_form.input :city, collection: Collaborator.distinct.pluck(:city) %>
-              <% end  %>
-              <%= f.fields_for :template do |template_form| %>
-                <%= template_form.input :description, as: :text,
-                placeholder:"Your SMS here"%>
-              <% end %>
-            </div>
-          </div>
-        <div class="form-actions">
-          <%= f.submit "Send", class: "btn-main" %>
-        <% end %>
+      <%= f.fields_for :search do |search_form|  %>
+      <%= select_tag "continent2", options_from_collection_for_select(
+        @continents, :name, :name),
+        class: 'select2-continent form-control', multiple: "multiple", label: "Continent" %>
+      </div>
+
+      <div class="form-group">
+        <%= select_tag "Country2", options_from_collection_for_select(
+          @countries, :name, :name),
+          class: 'select2-country form-control', multiple: "multiple" %>
         </div>
+
+        <div class="form-group">
+          <%= select_tag "city2", options_from_collection_for_select(
+            @cities, :name, :name),
+            class: 'select2-city form-control', multiple: "multiple" %>
+          </div>
+
+          <% end  %>
+
+          <%= f.fields_for :template do |template_form| %>
+          <%= template_form.input :description, as: :text,
+          placeholder:"Your SMS here"%>
+          <% end %>
+
+          <div class="form-actions">
+            <%= f.submit "Send", class: "btn-main" %>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
