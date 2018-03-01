@@ -3,8 +3,8 @@
   <div class="main-container">
     <div class="card-show">
       <h1>Alerts index</h1>
+      <% @events.each do |c| %>
       <div class="archive">
-        <% @events.each do |c| %>
         <div class="archive-body">
           <p><strong><%= c.name %></strong></p>
           <p>Created on: <%= c.created_at %></p>
@@ -22,7 +22,7 @@
           <% end %>
         </div>
       </div>
-      <% end %>
+    <% end %>
     </div>
   </div>
 </div>
