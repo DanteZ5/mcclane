@@ -9,6 +9,7 @@
 puts "cleaning dB"
 
 Message.destroy_all
+Template.destroy_all
 Colevent.destroy_all
 Collaborator.destroy_all
 Event.destroy_all
@@ -30,15 +31,15 @@ users = User.create!(users_attributes)
 puts "creating collaborators"
 
 collaborators_attributes = [
-{ email: 'nassim@gmail.com', phone_pro: '0610257263', first_name: "Nassim",
+{ email: 'nassim@gmail.com', phone_pro: '+33610257263', first_name: "Nassim",
 last_name: "Mezouar", continent:"Europe", country: "France", city: "Paris", user_id: User.first.id},
-{ email: 'dante@gmail.com', phone_pro: '0634264547', first_name: "Dante",
+{ email: 'dante@gmail.com', phone_pro: '+33634264547', first_name: "Dante",
 last_name: "Planterose", continent:"Africa", country: "Senegal", city: "Dakar", user_id: User.first.id},
-{ email: 'thibaud@gmail.com', phone_pro: '0786091509', first_name: "Thibaud",
+{ email: 'thibaud@gmail.com', phone_pro: '+33786091509', first_name: "Thibaud",
 last_name: "Vuitton", continent:"Europe", country: "France", city: "Lyon", user_id: User.first.id},
-{ email: 'maximilien@gmail.com', phone_pro: '0681256797', first_name: "Maximilien",
+{ email: 'maximilien@gmail.com', phone_pro: '+33681256797', first_name: "Maximilien",
 last_name: "Rufin", continent:"Europe", country: "France", city: "Paris", user_id: User.first.id},
-{ email: 'thomas@gmail.com', phone_pro: '0681257797', first_name: "Thomas",
+{ email: 'thomas@gmail.com', phone_pro: '+33681257797', first_name: "Thomas",
 last_name: "Sertorio", continent:"Europe", country: "France", city: "Paris", user_id: User.last.id}
 ]
 

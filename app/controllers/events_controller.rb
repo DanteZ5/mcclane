@@ -49,9 +49,9 @@ class EventsController < ApplicationController
       collaborators.each do |collaborator|
         # cree plusieurs instances Colevent
         colevent = Colevent.create(collaborator: collaborator, event: @event, safe: false)
-        # cree plusieurs instannces messages (pour chage colevent)
+        # cree plusieurs instannces messages (pour chaque colevent)
         message = Message.create(content: message_content, colevent: colevent, phone_number: colevent.collaborator.phone_pro, destination: 'outbound')
-        message.send_sms if false # change manuellement true / false pour activer / desactiver
+        message.send_sms if true # change manuellement true / false pour activer / desactiver
       end
       redirect_to event_path(@event)
     else
