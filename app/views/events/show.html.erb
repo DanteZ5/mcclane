@@ -1,12 +1,30 @@
 <div class="container">
-  <h1><%= @event.name%>| <%= @event.status %></h1>
+
+  <!-- Navigation -->
+  <div class="main-container">
+     <div class="nav-show">
+       <ul class="nav nav-pills">
+         <li role="presentation" class="disabled navh"><a href="#">1. Collaborators selection</a></li>
+         <li role="presentation" class="disabled navh"><a href="#">2. SMS creation</a></li>
+         <li role="presentation" class="active navh"><a href="#">3. Dashboard</a></li>
+       </ul>
+     </div>
+   </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <p><%= @event.name%>| <%= @event.status %></p>
+      <button class="btn btn-danger">Edit messages</button>
+    </div>
+  </div>
+
 
   <!-- Progress bar -->
   <%= render 'progress_bar' %>
 
-  <!-- Filters and edit message -->
+  <!-- Edit message -->
   <%= render 'filter_colevent' %>
-
+<br>
 
 
   <!-- Collaborators table with inline status -->
@@ -29,22 +47,17 @@
       <%= render partial: "shared/collaborator_status_change",
       locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
       <!-- End of collaborator statuts-name modal call -->
-      <% if c.safe? %>
-        <tr class="bg-success">
-      <% else %>
-        <tr class="bg-warning">
-      <% end %>
           <td><%= c.collaborator.last_name %></td>
           <td><%= c.collaborator.first_name %></td>
           <% if c.safe? %>
-            <td>OK</td>
+            <td><div class="bubble-safe"></div></td>
           <% else %>
-            <td>Pending</td>
+            <td><div class="bubble-pending"></td>
           <% end %>
           <td><%= c.collaborator.continent %>, <%= c.collaborator.country %>, <%= c.collaborator.city %></td>
-          <td colspan="2" class="actions-icons"><%= link_to "", "#", class: "fas fa-eye white" %>
+          <td colspan="2" class="actions-icons"><%= link_to "", "#", class: "fas fa-eye" %>
           <i type="button" class="fas fa-exchange-alt white" data-toggle="modal" data-target="#exampleModalCenter<%= c.collaborator.id  %>">
-          </i><%= link_to "", "#", class: "fas fa-envelope white" %></td>
+          </i><%= link_to "", "#", class: "fas fa-envelope" %></td>
         </tr>
         <% end %>
       <!-- End employee -->
