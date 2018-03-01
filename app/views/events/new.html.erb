@@ -6,12 +6,12 @@
 
   <!-- Form with tags input-->
   <div class="main-container">
-    <div class="card-show">
+    <div class="card-show" style="padding: 60px;">
 
      <h1>New alert</h1>
 
 
-      <%= simple_form_for @event do |f| %>
+      <%= simple_form_for @event, remote: true do |f| %>
         <div class="alert-step active">
           <%= f.fields_for :search do |search_form|  %>
             <div class="form-group">
@@ -34,14 +34,24 @@
 
         <div class="alert-step">
           <%= f.fields_for :template do |template_form| %>
-            <%= template_form.input :description, as: :text, placeholder:"Your SMS here"%>
+            <%= template_form.input :description, as: :text, placeholder:"Your SMS here" %>
           <% end %>
 
           <div class="form-actions">
             <%= f.submit "Send", class: "btn-main" %>
             <% end %>
         </div>
-
+<div class="mess">
+<div class="he"><span class="left">Messages</span>
+<span class="name">McClane</span><span class="right">Contact</span>
+</div>
+<div class="messages-wrapper">
+  <br><br><br><br><br><br><br><br><br><br><br>
+  <div class="message to" style="text-align: right;">...</div>
+  <br>
+</div>
+</div>
+</div>
           </div>
         </div>
       </div>
