@@ -1,6 +1,6 @@
 
 function messenger() {
-  const message_container = document.getElementById('event_template_description');
+  const message_container = document.getElementById('event_template_content');
   message_container.addEventListener("keyup", (event) => {
   const message = message_container.value;
   const template = document.querySelector('.message');
