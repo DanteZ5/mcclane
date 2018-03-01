@@ -1,6 +1,7 @@
 .table-dark {
-  color: #fff;
-  background-color: #020205;
+  color: black;
+  background-color: white;
+  border-color: black;
 }
 .bg-success {
   background-color: #17b978!important;
@@ -15,12 +16,10 @@
   display: flex;
   font-size: 20px;
   justify-content: space-between;
+  color: black;
 }
 .actions-icons :hover {
   text-decoration: none;
-}
-.white {
-  color: white;
 }
 .table-space {
   margin-top: 20px;
@@ -31,3 +30,19 @@
   text-align: center;
   display: block;
 }
+.bubble-safe {
+  background-color: #17b978;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  margin: 0px 15px;
+}
+.bubble-pending {
+  background-color: #E67E22;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  margin: 0px 15px;
+}
+
+
