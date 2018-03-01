@@ -1,1 +1,28 @@
-<h1>EVENTS INDEX</h1>
+
+<div class="container">
+  <div class="main-container">
+    <div class="card-show">
+      <h1>Alerts index</h1>
+      <div class="archive">
+        <% @events.each do |c| %>
+        <div class="archive-body">
+          <p><strong><%= c.name %></strong></p>
+          <p>Created on: <%= c.created_at %></p>
+          <p>Closed on:
+            <% if c.end_date == nil %>
+              ongoing
+            <% else %>
+              <%= c.end_date %>
+            <% end %>
+          </p>
+        </div>
+        <div class="archive-status">
+          <%= link_to event_path(c) do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

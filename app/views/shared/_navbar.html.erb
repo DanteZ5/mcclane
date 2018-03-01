@@ -14,7 +14,7 @@
           <%= image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "#" do %>
+              <%= link_to events_path do %>
                 <i class="fas fa-bell"></i>  <%= t(".index", default: "My alerts") %>
               <% end %>
             </li>

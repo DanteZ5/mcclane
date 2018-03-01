@@ -1,0 +1,52 @@
+.archive {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(220,224,244,0.4);
+}
+.archive-body {
+  flex-grow: 1;
+}
+.archive-name {
+  padding-left: 10px;
+  min-width: 100px;
+}
+.archive-name h3 {
+  font-size: 13px;
+  margin-bottom: 0px;
+}
+.archive-name p {
+  font-size: 13px;
+  font-weight: lighter;
+  opacity: 0.6;
+  margin-top: 5px;
+}
+.archive-body {
+  padding-left: 10px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.7);
+}
+.archive-body {
+  padding-left: 20px;
+  color: rgba(0,0,0,0.4);
+}
+.archive-body strong{
+  color: rgba(0,0,0,0.9);
+  color: rgba(0,0,0,0.9);
+}
+.archive-body p {
+  margin: 6px 0;
+}
+.archive-status {
+  font-size: 24px;
+  font-weight: bold;
+}
+.status.accepted {
+  color: #04A366;
+}
+.status.declined {
+  color: red;
+}
+.status.pending {
+  color: lightgrey;
+}
