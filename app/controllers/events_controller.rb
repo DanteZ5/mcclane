@@ -38,7 +38,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     authorize @event
     if @event.save
-      collaborators = Collaborator.where(country: params[:event][:search][:country], city: params[:event][:search][:city])
+      collaborators = Collaborator.where(continent: params[:continent2],country: params[:Country2], city: params[:city2])
       message = params[:event][:template][:content]
       template = Template.create(content: message, event: @event, slot: 5, order: 0)
       collaborators.each do |collaborator|
