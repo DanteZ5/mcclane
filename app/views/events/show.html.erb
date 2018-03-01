@@ -25,7 +25,10 @@
 
       <!-- Each employee -->
       <% @event.colevents.each do |c| %>
-      <%= render partial: "shared/collaborator_status_change", locals: {collaborator: c.collaborator} %>
+      <!-- Collaborator statuts-name modal call -->
+      <%= render partial: "shared/collaborator_status_change",
+      locals: {collaborator: c.collaborator, safe: c.safe} %>
+      <!-- End of collaborator statuts-name modal call -->
       <% if c.safe? %>
         <tr class="bg-success">
       <% else %>
@@ -40,7 +43,7 @@
           <% end %>
           <td><%= c.collaborator.continent %>, <%= c.collaborator.country %>, <%= c.collaborator.city %></td>
           <td colspan="2" class="actions-icons"><%= link_to "", "#", class: "fas fa-eye white" %>
-          <i type="button" class="fas fa-exchange-alt white" data-toggle="modal" data-target="#exampleModalCenter">
+          <i type="button" class="fas fa-exchange-alt white" data-toggle="modal" data-target="#exampleModalCenter<%= c.collaborator.id  %>">
           </i><%= link_to "", "#", class: "fas fa-envelope white" %></td>
         </tr>
         <% end %>
