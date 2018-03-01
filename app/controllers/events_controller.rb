@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :archive]
+  before_action :set_event, only: [:show, :archive, :status_change]
   def index
     @events = policy_scope(Event)
   end
@@ -70,6 +70,8 @@ class EventsController < ApplicationController
   def archive
     @event.status = "over"
   end
+
+
 
   private
 

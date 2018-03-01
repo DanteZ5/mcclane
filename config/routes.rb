@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   end
 
   resources :events
-  resources :colevents, only: :show do
+  resources :colevents, only: [:show, :update] do
     resources :messages, only: [:new, :create]
   end
+
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
