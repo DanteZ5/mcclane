@@ -48,11 +48,9 @@ class EventsController < ApplicationController
 
       c = Collaborator.arel_table
       collaborators = Collaborator.where((c[:user_id].eq(current_user.id)).
-        and(c[:continent].eq(params[:continent])).
-        or(c[:country].eq(params[:country])).
-        or(c[:city].eq(params[:city]))).distinct
-
-      raise
+        and(c[:continent].in(params[:continent])).
+        or(c[:country].in(params[:country])).
+        or(c[:city].in(params[:city]))).distinct
 
       # collaborators = Collaborator.where(user_id: current_user, continent: params[:continent],country: params[:country], city: params[:city])
 
