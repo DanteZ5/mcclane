@@ -8,11 +8,11 @@
         <div class="archive-body">
           <p><strong><%= c.name %></strong></p>
           <p>Created on: <%= c.created_at %></p>
-          <p>Closed on:
+          <p>Status:
             <% if c.end_date == nil %>
               ongoing
             <% else %>
-              <%= c.end_date %>
+              closed on <%= c.end_date %>
             <% end %>
           </p>
         </div>
