@@ -12,6 +12,7 @@ gem 'redis'
 gem 'twilio-ruby'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+gem 'faker'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
