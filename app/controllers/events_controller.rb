@@ -31,28 +31,38 @@ class EventsController < ApplicationController
     @cities = cities.map do |city|
       Struct::City.new(city, city)
     end
-
   end
 
   def create
     # Cree une instance Event
-
     @event = Event.new(event_params)
     @event.name = "#{Time.now}"
     @event.status = "ongoing"
     @event.user = current_user
     authorize @event
+
     if @event.save
       # Si save, cree une instance template
       message_content = params[:event][:template][:description]
       template = Template.create(content: message_content, event: @event, slot: 5, order: 0)
-      collaborators = Collaborator.where(user_id: current_user, continent: params[:continent2],country: params[:Country2], city: params[:city2])
+
+      c = Collaborator.arel_table
+      collaborators = Collaborator.where((c[:user_id].eq(current_user.id)).
+        and(c[:continent].eq(params[:continent])).
+        or(c[:country].eq(params[:country])).
+        or(c[:city].eq(params[:city]))).distinct
+
+      raise
+
+      # collaborators = Collaborator.where(user_id: current_user, continent: params[:continent],country: params[:country], city: params[:city])
+
+
       collaborators.each do |collaborator|
         # cree plusieurs instances Colevent
         colevent = Colevent.create(collaborator: collaborator, event: @event, safe: false)
         # cree plusieurs instannces messages (pour chaque colevent)
         message = Message.create(content: message_content, colevent: colevent, phone_number: colevent.collaborator.phone_pro, destination: 'outbound')
-        message.send_sms if true # change manuellement true / false pour activer / desactiver
+        #message.send_sms if true # change manuellement true / false pour activer / desactiver
       end
       redirect_to event_path(@event)
 
