@@ -48,8 +48,8 @@ last_name: "Sertorio", continent:"Europe", country: "France", city: "Paris", use
 Collaborator.create!(collaborators_attributes)
 
 50.times do
-Collaborator.create!( email: Faker::Internet.email, first_name: Faker::Name.first_name,
-last_name: Faker::Name.last_name, phone_pro: "stop", continent:"Europe", country: "France", city: "Paris", user_id: User.first.id )
+  Collaborator.create!( email: Faker::Internet.email, first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name, phone_pro: "stop", continent:"Europe", country: "France", city: "Paris", user_id: User.first.id )
 end
 
 
