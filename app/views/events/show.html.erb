@@ -57,7 +57,7 @@
       <!-- Collaborator statuts-name modal call -->
       <%= render partial: "shared/collaborator_status_change",
       locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
-      <%= render partial: "shared/send_specific_mail",
+      <%= render partial: "shared/send_specific_sms",
       locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
       <!-- End of collaborator statuts-name modal call -->
           <td class="center-headers"><%= c.collaborator.last_name %></td>
