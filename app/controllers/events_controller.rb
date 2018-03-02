@@ -65,8 +65,12 @@ class EventsController < ApplicationController
     authorize @event
     unsafe = @event.colevents.where(safe: false).count
     total_collaborators = @event.collaborators.count
-    @unsafe_percentage = (unsafe * 100) / total_collaborators
-    @safe_percentage = 100 - @unsafe_percentage
+    if total_collaborators == 0
+      redirect_to new_event_path
+    else
+      @unsafe_percentage = (unsafe * 100) / total_collaborators
+      @safe_percentage = 100 - @unsafe_percentage
+    end
   end
 
   def archive
