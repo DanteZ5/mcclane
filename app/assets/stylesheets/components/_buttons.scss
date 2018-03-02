@@ -13,3 +13,51 @@
   border: 1px solid black;
   background-color: transparent;
 }
+.btn-edit {
+  color: white;
+  border: 1px solid red;
+  padding: 10px 10px;
+  border-radius: 5px;
+  opacity: 0.8;
+  background-color: red;
+  margin-bottom: 10px;
+}
+.btn-edit:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: white;
+  border: 1px solid red;
+  background-color: red;
+}
+.btn-safe {
+  color: white;
+  border: 1px solid green;
+  padding: 10px 10px;
+  border-radius: 5px;
+  opacity: 0.8;
+  background-color: green;
+  margin-bottom: 10px;
+}
+.btn-safe:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: white;
+  border: 1px solid green;
+  background-color: green;
+}
+.btn-pending {
+  color: white;
+  border: 1px solid orange;
+  padding: 10px 10px;
+  border-radius: 5px;
+  opacity: 0.8;
+  background-color: orange;
+  margin-bottom: 10px;
+}
+.btn-pending:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: white;
+  border: 1px solid orange;
+  background-color: orange;
+}
