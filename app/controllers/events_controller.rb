@@ -2,6 +2,14 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :archive, :status_change]
   def index
     @events = policy_scope(Event)
+    @events = Event.select { |c| c.user == current_user }
+    # ev = Event.arel_table
+    # @events = Event.where(ev[:user_id].eq(current_user.id))
+    # evts2 = Event.joins(
+    #  Event.arel_table.join(User.arel_table).on(
+    #    User.arel_table[:id].eq(current_user.id)
+    #  ).join_sources
+    # )
   end
 
   def new
