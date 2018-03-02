@@ -43,7 +43,13 @@ last_name: "Rufin", continent:"Europe", country: "France", city: "Paris", user_i
 last_name: "Sertorio", continent:"Europe", country: "France", city: "Paris", user_id: User.last.id}
 ]
 
-collaborators = Collaborator.create!(collaborators_attributes)
+Collaborator.create!(collaborators_attributes)
+
+50.times do
+Collaborator.create!( email: Faker::Internet.email, first_name: Faker::Name.first_name,
+last_name: Faker::Name.last_name, phone_pro: "stop", continent:"Europe", country: "France", city: "Paris", user_id: User.first.id )
+end
+
 
 puts "creating events"
 
@@ -55,9 +61,11 @@ events = Event.create!(events_attributes)
 
 puts "creating colevent"
 
-  collabos = Collaborator.joins(:user).where(users: {company: 'Le Wagon'}, collaborators: {country: "France"} )
-  collabos.each do |collabo|
-   Colevent.create(event: Event.find_by(name: "Tsunami"), collaborator: collabo, safe: false)
-  end
+collabs = Collaborator.all
+collabs.each do |c|
+  Colevent.create(event: events.first, collaborator: c, safe: false)
+end
+
+
 
  puts "OK done!"

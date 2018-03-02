@@ -9,4 +9,8 @@ class ColeventPolicy < ApplicationPolicy
     record.event.user == user
   end
 
+  def mark_unsafe?
+    update?
+  end
+
 end

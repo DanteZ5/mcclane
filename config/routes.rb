@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   resources :events
   resources :colevents, only: [:show, :update] do
     resources :messages, only: [:new, :create]
+    get '/mark_unsafe', to: 'colevents#mark_unsafe'
   end
+
 
 
   namespace :api, defaults: { format: :json } do

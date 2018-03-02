@@ -3,6 +3,9 @@
   background-color: white;
   border-color: black;
 }
+.center-headers {
+  text-align: center;
+}
 .bg-success {
   background-color: #17b978!important;
 }
@@ -35,14 +38,27 @@
   height: 15px;
   width: 15px;
   border-radius: 50%;
-  margin: 0px 15px;
+  margin: 0px auto;
 }
 .bubble-pending {
   background-color: #E67E22;
   height: 15px;
   width: 15px;
   border-radius: 50%;
-  margin: 0px 15px;
+  margin: 0px auto;
+}
+.results tr[visible='false'],
+.no-result{
+  display:none;
+}
+
+.results tr[visible='true']{
+  display:table-row;
+}
+
+.counter{
+  padding:8px;
+  color:#ccc;
 }
 
 

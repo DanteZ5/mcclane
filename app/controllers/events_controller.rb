@@ -60,7 +60,8 @@ class EventsController < ApplicationController
         colevent = Colevent.create(collaborator: collaborator, event: @event, safe: false)
         # cree plusieurs instannces messages (pour chaque colevent)
         message = Message.create(content: message_content, colevent: colevent, phone_number: colevent.collaborator.phone_pro, destination: 'outbound')
-        #message.send_sms if true # change manuellement true / false pour activer / desactiver
+        message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
+
       end
       redirect_to event_path(@event)
 
@@ -73,8 +74,12 @@ class EventsController < ApplicationController
     authorize @event
     unsafe = @event.colevents.where(safe: false).count
     total_collaborators = @event.collaborators.count
-    @unsafe_percentage = (unsafe * 100) / total_collaborators
-    @safe_percentage = 100 - @unsafe_percentage
+    if total_collaborators == 0
+      redirect_to new_event_path
+    else
+      @unsafe_percentage = (unsafe * 100) / total_collaborators
+      @safe_percentage = 100 - @unsafe_percentage
+    end
   end
 
   def archive
