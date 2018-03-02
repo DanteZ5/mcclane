@@ -52,10 +52,12 @@
       </thead>
       <tbody>
 
-      <!-- Each employee -->
+       <!-- Each employee -->
       <% @event.colevents.each do |c| %>
       <!-- Collaborator statuts-name modal call -->
       <%= render partial: "shared/collaborator_status_change",
+      locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
+      <%= render partial: "shared/send_specific_mail",
       locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
       <!-- End of collaborator statuts-name modal call -->
           <td class="center-headers"><%= c.collaborator.last_name %></td>
@@ -68,13 +70,14 @@
           <td class="center-headers"><%= c.collaborator.continent %>, <%= c.collaborator.country %>, <%= c.collaborator.city %></td>
           <td colspan="2" class="actions-icons"><%= link_to "", "#", class: "fas fa-eye" %>
           <a class="fas fa-exchange-alt white" data-toggle="modal" data-target="#exampleModalCenter<%= c.collaborator.id  %>">
-          </a><%= link_to "", "#", class: "fas fa-envelope" %></td>
+          </a>
+            <button style="background-color: transparent; border-color: transparent;" type="button" class="fas fa-envelope" data-toggle="modal" data-target="#exampleModalSMS<%= c.collaborator.id  %>"></button>
+          </td>
         </tr>
         <% end %>
       <!-- End employee -->
       </tbody>
     </table>
   </div>
-
 </div>
 
