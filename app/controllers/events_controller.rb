@@ -5,13 +5,8 @@ class EventsController < ApplicationController
 
     # @events = Event.select { |c| c.user == current_user }
     ev = Event.arel_table
-    @events = Event.where(ev[:user_id].eq(current_user.id))
-
-    # evts2 = Event.joins(
-    #  Event.arel_table.join(User.arel_table).on(
-    #    User.arel_table[:id].eq(current_user.id)
-    #  ).join_sources
-    # )
+    events = Event.where(ev[:user_id].eq(current_user.id))
+    @events = events.order(:updated_at).reverse
   end
 
   def new
