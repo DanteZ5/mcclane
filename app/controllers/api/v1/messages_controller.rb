@@ -24,7 +24,7 @@ class Api::V1::MessagesController < Api::V1::BaseController
       end
     end
 
-    render json: { ok: true }
-
+    # render json: { ok: true }
+    head :no_content
   end
 end
