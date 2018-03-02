@@ -1,25 +1,23 @@
 .btn-main {
-  color: black;
+  color: white;
   border: 1px solid black;
   padding: 10px 40px;
   border-radius: 5px;
-  font-weight: lighter;
-  opacity: 0.6;
+  opacity: 0.9;
+  background-color: black;
 }
 .btn-main:hover {
   opacity: 1;
   text-decoration: none;
-  color: black;
+  color: white;
   border: 1px solid black;
-  background-color: transparent;
 }
 .btn-edit {
   color: white;
-  border: 1px solid red;
+  border: 1px solid #FE5F55;
   padding: 10px 10px;
   border-radius: 5px;
-  opacity: 0.8;
-  background-color: red;
+  background-color: #FE5F55;
   margin-bottom: 10px;
 }
 .btn-edit:hover {
@@ -27,23 +25,23 @@
   text-decoration: none;
   color: white;
   border: 1px solid red;
-  background-color: red;
+  background: darken(#FE5F55, 10%);
 }
 .btn-safe {
   color: white;
-  border: 1px solid green;
+  border: 1px solid #2EB872;
   padding: 10px 10px;
   border-radius: 5px;
   opacity: 0.8;
-  background-color: green;
+  background-color: #2EB872;
   margin-bottom: 10px;
 }
 .btn-safe:hover {
   opacity: 1;
   text-decoration: none;
   color: white;
-  border: 1px solid green;
-  background-color: green;
+  border: 1px solid #2EB872;
+  background-color: #2EB872;
 }
 .btn-pending {
   color: white;
