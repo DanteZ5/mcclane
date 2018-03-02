@@ -35,7 +35,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    # raise
     # Cree une instance Event
 
     @event = Event.new(event_params)
@@ -45,10 +44,9 @@ class EventsController < ApplicationController
     authorize @event
     if @event.save
       # Si save, cree une instance template
-      message_content = params[:event][:template][:content]
+      message_content = params[:event][:template][:description]
       template = Template.create(content: message_content, event: @event, slot: 5, order: 0)
       collaborators = Collaborator.where(user_id: current_user, continent: params[:continent2],country: params[:Country2], city: params[:city2])
-      binding.pry
       collaborators.each do |collaborator|
         # cree plusieurs instances Colevent
         colevent = Colevent.create(collaborator: collaborator, event: @event, safe: false)
@@ -56,7 +54,6 @@ class EventsController < ApplicationController
         message = Message.create(content: message_content, colevent: colevent, phone_number: colevent.collaborator.phone_pro, destination: 'outbound')
         message.send_sms if true # change manuellement true / false pour activer / desactiver
       end
-
       redirect_to event_path(@event)
 
     else
@@ -79,7 +76,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :status, :end_date, :template, :continent2, :country2, :city2)
+    params.require(:event).permit(:name, :status, :end_date)
   end
 
   def set_event
