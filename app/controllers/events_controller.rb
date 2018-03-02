@@ -31,7 +31,6 @@ class EventsController < ApplicationController
     @cities = cities.map do |city|
       Struct::City.new(city, city)
     end
-
   end
 
   def create
@@ -52,7 +51,7 @@ class EventsController < ApplicationController
         colevent = Colevent.create(collaborator: collaborator, event: @event, safe: false)
         # cree plusieurs instannces messages (pour chaque colevent)
         message = Message.create(content: message_content, colevent: colevent, phone_number: colevent.collaborator.phone_pro, destination: 'outbound')
-        message.send_sms if true # change manuellement true / false pour activer / desactiver
+        message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
       end
       redirect_to event_path(@event)
 
