@@ -16,6 +16,9 @@
         <% end %>
       </div>
       <div class="modal-footer">
+        <%= link_to colevent_mark_unsafe_path(colevent), method: :get do %>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Pending</button>
+        <% end %>
         <%= link_to colevent_path(colevent), method: :patch do %>
           <button type="button" class="btn btn-success" data-dismiss="modal">Safe</button>
         <% end %>
@@ -23,3 +26,4 @@
     </div>
   </div>
 </div>
+

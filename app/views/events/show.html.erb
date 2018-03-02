@@ -12,9 +12,11 @@
    </div>
 
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-6">
       <p><%= @event.name%>| <%= @event.status %></p>
-      <button class="btn btn-danger">Edit messages</button>
+    </div>
+    <div class="col-xs-6">
+      <button class="btn btn-danger" style="margin: 0px 0px 10px 410px;">Edit messages</button>
     </div>
   </div>
 
@@ -23,20 +25,29 @@
   <%= render 'progress_bar' %>
 
   <!-- Edit message -->
-  <%= render 'filter_colevent' %>
-<br>
-
+ <!--  <div class="row">
+    <div class="col-xs-3">
+      <%= render 'filter_colevent' %>
+    </div>
+  </div> -->
 
   <!-- Collaborators table with inline status -->
+  <div class="form-group pull-left">
+    <input type="text" class="search form-control" placeholder="Filter">
+  </div>
+  <span class="counter pull-left"></span>
   <div class="table-space">
-    <table class="table table-dark">
+    <table class="table table-dark table-hover results">
       <thead>
         <tr>
-          <th scope="col">Last name</th>
-          <th scope="col">First name</th>
-          <th scope="col">Status</th>
-          <th scope="col">Tags</th>
-          <th scope="col" colspan="2" style="text-align: center;">Actions</th>
+          <th scope="col" class="center-headers">Last name</th>
+          <th scope="col" class="center-headers">First name</th>
+          <th scope="col" class="center-headers">Status</th>
+          <th scope="col" class="center-headers">Tags</th>
+          <th scope="col" colspan="2" class="center-headers">Actions</th>
+        </tr>
+        <tr class="warning no-result">
+          <td colspan="4"><i class="fa fa-warning"></i> No result</td>
         </tr>
       </thead>
       <tbody>
@@ -47,17 +58,17 @@
       <%= render partial: "shared/collaborator_status_change",
       locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
       <!-- End of collaborator statuts-name modal call -->
-          <td><%= c.collaborator.last_name %></td>
-          <td><%= c.collaborator.first_name %></td>
+          <td class="center-headers"><%= c.collaborator.last_name %></td>
+          <td class="center-headers"><%= c.collaborator.first_name %></td>
           <% if c.safe? %>
             <td><div class="bubble-safe"></div></td>
           <% else %>
             <td><div class="bubble-pending"></td>
           <% end %>
-          <td><%= c.collaborator.continent %>, <%= c.collaborator.country %>, <%= c.collaborator.city %></td>
+          <td class="center-headers"><%= c.collaborator.continent %>, <%= c.collaborator.country %>, <%= c.collaborator.city %></td>
           <td colspan="2" class="actions-icons"><%= link_to "", "#", class: "fas fa-eye" %>
-          <i type="button" class="fas fa-exchange-alt white" data-toggle="modal" data-target="#exampleModalCenter<%= c.collaborator.id  %>">
-          </i><%= link_to "", "#", class: "fas fa-envelope" %></td>
+          <a class="fas fa-exchange-alt white" data-toggle="modal" data-target="#exampleModalCenter<%= c.collaborator.id  %>">
+          </a><%= link_to "", "#", class: "fas fa-envelope" %></td>
         </tr>
         <% end %>
       <!-- End employee -->
