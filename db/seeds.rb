@@ -77,21 +77,4 @@ end
 end
 
 
-puts "creating events"
-
-events_attributes = [
-{ name: "Tsunami", user: User.first },
-{ name: "Attaque HQ", end_date: "12/12/2017", user: User.first } ]
-
-events = Event.create!(events_attributes)
-
-puts "creating colevent"
-
-collabs = Collaborator.all
-collabs.each do |c|
-  Colevent.create(event: events.first, collaborator: c, safe: 'pending')
-end
-
-
-
- puts "OK done!"
+puts "OK done!"
