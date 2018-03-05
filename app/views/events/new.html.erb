@@ -23,10 +23,6 @@
       </div>
 
       <div class="form-group">
-        <%= select_tag "country", options_from_collection_for_select(@countries, :name, :name), class: 'select2-country form-control', multiple: true %>
-      </div>
-
-      <div class="form-group">
         <%= select_tag "city", options_from_collection_for_select(@cities, :name, :name),
         class: 'select2-city form-control', multiple: true %>
       </div>
