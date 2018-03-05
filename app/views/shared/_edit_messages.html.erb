@@ -11,7 +11,7 @@
       <div class="cardmodal-body main-container">
         <%= simple_form_for @event do |f| %>
           <%= f.fields_for :template do |template_form| %>
-            <%= template_form.input :description, as: :text, placeholder:"Your SMS here" %>
+            <%= template_form.input :description, as: :text, input_html: { value:"There has been a [EVENT] please answer 1 to indicate you're safe." } %>
             <%= template_form.input :timer, collection: 1..60 %>
             <%= f.submit "Set", class: "btn-main", data: { confirm: 'Do you really want to send this message?' } %>
             <% end %>
@@ -22,7 +22,7 @@
                   <div id="toggle-pane-88" class="collapse">
                     <%= simple_form_for @event do |f| %>
                       <%= f.fields_for :template do |template_form| %>
-                        <%= template_form.input :description, as: :text, placeholder:"Your SMS here" %>
+                        <%= template_form.input :description, as: :text, input_html: { value:"There has been a [EVENT] please answer 1 to indicate you're safe." } %>
                         <%= template_form.input :timer, collection: 1..60 %>
                         <%= f.submit "Set", class: "btn-main", data: { confirm: 'Do you really want to send this message?' } %>
                         <% end %>
