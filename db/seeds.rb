@@ -47,9 +47,33 @@ last_name: "Sertorio", continent:"Europe", country: "France", city: "Paris", use
 
 Collaborator.create!(collaborators_attributes)
 
-50.times do
+30.times do
   Collaborator.create!( email: Faker::Internet.email, first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name, phone_pro: "stop", continent:"Europe", country: "France", city: "Paris", user_id: User.first.id )
+end
+10.times do
+  Collaborator.create!( email: Faker::Internet.email, first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name, phone_pro: "stop", continent:"Europe", country: "France", city: "Lyon", user_id: User.first.id )
+end
+25.times do
+  Collaborator.create!( email: Faker::Internet.email, first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name, phone_pro: "stop", continent:"Europe", country: "Sweden", city: "Stockholm", user_id: User.first.id )
+end
+15.times do
+  Collaborator.create!( email: Faker::Internet.email, first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name, phone_pro: "stop", continent:"Europe", country: "Norway", city: "Oslo", user_id: User.first.id )
+end
+8.times do
+  Collaborator.create!( email: Faker::Internet.email, first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name, phone_pro: "stop", continent:"Europe", country: "Norway", city: "Bergen", user_id: User.first.id )
+end
+13.times do
+  Collaborator.create!( email: Faker::Internet.email, first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name, phone_pro: "stop", continent:"Europe", country: "Italy", user_id: User.first.id )
+end
+37.times do
+  Collaborator.create!( email: Faker::Internet.email, first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name, phone_pro: "stop", continent:"Europe", country: "Spain", user_id: User.first.id )
 end
 
 
