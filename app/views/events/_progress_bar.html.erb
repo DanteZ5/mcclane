@@ -1,4 +1,7 @@
 <div class="progress" style="height: 60px; border-radius: 1px;">
   <div class="progress-bar bg-success progress-bar-striped active" role="progressbar" style="width: <%= @safe_percentage %>%"; padding: 0px 20px; display: flex; align-items: center;" aria-valuenow= <%= @safe_percentage %> aria-valuemin="0" aria-valuemax="100"><p style="margin-top: 20px;"><%= @safe_percentage %>%</p></div>
+
+   <div class="progress-bar bg-suspect progress-bar-striped active" role="progressbar" style="width: <%= @suspect_percentage %>%"; display: flex; padding: 0px 20px; align-items: center;" aria-valuenow= <%= @suspect_percentage %> aria-valuemin="0" aria-valuemax="100"><p style="margin-top: 20px;"><%= @suspect_percentage %>%</p></div>
+
   <div class="progress-bar bg-warning progress-bar-striped active" role="progressbar" style="width: <%= @unsafe_percentage %>%"; display: flex; padding: 0px 20px; align-items: center;" aria-valuenow= <%= @unsafe_percentage %> aria-valuemin="0" aria-valuemax="100"><p style="margin-top: 20px;"><%= @unsafe_percentage %>%</p></div>
 </div>
