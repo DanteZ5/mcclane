@@ -16,12 +16,14 @@
       <p><%= @event.name%>| <%= @event.status %></p>
     </div>
     <div class="col-xs-6">
-      <%= render partial: "shared/edit_messages" %>
-      <button type="button" class="btn-edit pull-right" data-toggle="modal" data-target="#exampleModalLong">
-      Edit messages</button>
-      <%= link_to 'close event', close_event_path(@event), method: :patch %>
+      <% if @event.status == "ongoing" %>
+        <%= link_to 'Close event', close_event_path(@event), method: :patch, class: "btn-main pull-right", data: { confirm: 'Do you really want to close this event?' }  %>
+      <% else %>
+        <p class="pull-right btn btn-success">Event closed</p>
+      <% end %>
     </div>
   </div>
+  <br>
 
 
   <!-- Progress bar -->
@@ -33,6 +35,11 @@
     <input type="text" class="search form-control" placeholder="Filter">
   </div>
   <span class="counter pull-left"></span>
+  <div class="form-group pull-right">
+    <%= render partial: "shared/edit_messages" %>
+      <button type="button" class="btn-edit pull-right" data-toggle="modal" data-target="#exampleModalLong">
+      Edit messages</button>
+  </div>
   <div class="table-space">
     <table class="table table-dark table-hover results">
       <thead>
