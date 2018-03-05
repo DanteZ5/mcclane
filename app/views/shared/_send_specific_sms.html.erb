@@ -10,7 +10,7 @@
         <div class="modal-body">
          <%= simple_form_for [colevent, message] do |f| %>
 
-          <%= f.input :content, as: :text, placeholder:"Are you ok #{collaborator.first_name} #{collaborator.last_name}?" %>
+          <%= f.input :content, as: :text, input_html: { value:"Are you ok #{collaborator.first_name} #{collaborator.last_name}? Answer 1 if you are." } %>
           <%= f.input :phone_number, as: :hidden, input_html: { value: collaborator.phone_pro }  %>
 
          <div class="mess">

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :archive, :status_change]
+  before_action :set_event, only: [:show, :archive, :status_change, :close]
   def index
     @events = policy_scope(Event)
 
@@ -81,6 +81,11 @@ class EventsController < ApplicationController
   def show
     @message = Message.new
     authorize @event
+
+    # permet de sortir colevents par priorites
+    priorities = {'suspect'=>1, 'pending'=>2, 'safe'=>3}
+    @colevents = @event.colevents.sort {|x, y| priorities[x.safe] <=> priorities[y.safe]}
+
     unsafe = @event.colevents.where(safe: 'pending').count
     suspect = @event.colevents.where(safe: 'suspect').count
     total_collaborators = @event.collaborators.count
@@ -101,6 +106,12 @@ class EventsController < ApplicationController
   message_content = params[:event][:template][:description]
   @message = Message.create(content: message_content, colevent: c, phone_number: c.collaborator.phone_pro, destination: 'outbound')
   @message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
+  end
+
+  def close
+    authorize @event
+    @event.update(status: 'closed', end_date: Time.now)
+    redirect_to events_path
   end
 
   private

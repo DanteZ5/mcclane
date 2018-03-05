@@ -16,7 +16,10 @@
       <p><%= @event.name%>| <%= @event.status %></p>
     </div>
     <div class="col-xs-6">
-      <button class="btn-edit pull-right">Edit messages</button>
+      <%= render partial: "shared/edit_messages" %>
+      <button type="button" class="btn-edit pull-right" data-toggle="modal" data-target="#exampleModalLong">
+      Edit messages</button>
+      <%= link_to 'close event', close_event_path(@event), method: :patch %>
     </div>
   </div>
 
@@ -24,12 +27,6 @@
   <!-- Progress bar -->
   <%= render 'progress_bar' %>
 
-  <!-- Edit message -->
- <!--  <div class="row">
-    <div class="col-xs-3">
-      <%= render 'filter_colevent' %>
-    </div>
-  </div> -->
 
   <!-- Collaborators table with inline status -->
   <div class="form-group pull-left">
@@ -54,7 +51,7 @@
 
        <!-- Each employee -->
 
-      <% @event.colevents.each do |c| %>
+      <% @colevents.each do |c| %>
       <!-- Collaborator statuts-name modal call -->
       <%= render partial: "shared/collaborator_view_message",
       locals: {collaborator: c.collaborator, colevent: c, message: c.messages.last} %>
@@ -63,6 +60,7 @@
       <%= render partial: "shared/send_specific_sms",
       locals: {collaborator: c.collaborator, colevent: c, message: Message.new} %>
       <!-- End of collaborator statuts-name modal call -->
+      <tr id="<%= 'colevent_' + c.id.to_s %>">
           <td class="center-headers"><%= c.collaborator.last_name %></td>
           <td class="center-headers"><%= c.collaborator.first_name %></td>
           <% if c.safe == 'safe' %>
@@ -87,4 +85,24 @@
     </table>
   </div>
 </div>
-
+<!-- Action Cable -->
+<% content_for :after_js do %>
+  <script>
+    App['event_<%= @event.id %>'] = App.cable.subscriptions.create(
+      { channel: 'StatusUpdatesChannel', event_id: <%= @event.id %> },
+      {
+        received: (data) => {
+          const c_id = data.colevent_id;
+          const status = data.safe;
+          const c_row = document.getElementById("colevent_" + c_id);
+          const c_bubble = c_row.querySelector("td:nth-child(3) div");
+          if (status === "safe") {
+            c_bubble.classList.replace("bubble-pending", "bubble-safe" );
+          } else if (status === "suspect") {
+            c_bubble.classList.replace("bubble-pending", "bubble-suspect" );
+          }
+        }
+      }
+    )
+  </script>
+<% end %>
