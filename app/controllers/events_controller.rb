@@ -68,7 +68,7 @@ class EventsController < ApplicationController
         colevent = Colevent.create(collaborator: collaborator, event: @event, safe: "pending")
         # cree plusieurs instannces messages (pour chaque colevent)
         message = Message.create(content: message_content, colevent: colevent, phone_number: colevent.collaborator.phone_pro, destination: 'outbound')
-        message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
+        # message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
 
       end
       redirect_to event_path(@event)
@@ -82,12 +82,15 @@ class EventsController < ApplicationController
     @message = Message.new
     authorize @event
     unsafe = @event.colevents.where(safe: 'pending').count
+    suspect = @event.colevents.where(safe: 'suspect').count
     total_collaborators = @event.collaborators.count
     if total_collaborators == 0
       redirect_to new_event_path
     else
       @unsafe_percentage = (unsafe * 100) / total_collaborators
-      @safe_percentage = 100 - @unsafe_percentage
+      @suspect_percentage = (suspect * 100) / total_collaborators
+      @safe_percentage = 100 - @unsafe_percentage -@suspect_percentage
+
     end
   end
 
