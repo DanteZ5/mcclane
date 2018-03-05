@@ -10,7 +10,7 @@ class ColeventsController < ApplicationController
   def mark_unsafe
     @colevent = Colevent.find(params[:colevent_id])
     authorize @colevent
-    @colevent.safe = 'pendit'
+    @colevent.safe = 'pending'
     @colevent.save
     redirect_to event_path(@colevent.event)
   end

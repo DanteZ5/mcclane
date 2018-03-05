@@ -64,6 +64,8 @@
           <td class="center-headers"><%= c.collaborator.first_name %></td>
           <% if c.safe == 'safe' %>
             <td><div class="bubble-safe"></div></td>
+          <% elsif c.safe == 'suspect' %>
+            <td><div class="bubble-suspect"></td>
           <% else %>
             <td><div class="bubble-pending"></td>
           <% end %>
