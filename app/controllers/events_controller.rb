@@ -65,10 +65,10 @@ class EventsController < ApplicationController
 
       collaborators.each do |collaborator|
         # cree plusieurs instances Colevent
-        colevent = Colevent.create(collaborator: collaborator, event: @event, safe: false)
+        colevent = Colevent.create(collaborator: collaborator, event: @event, safe: "pending")
         # cree plusieurs instannces messages (pour chaque colevent)
         message = Message.create(content: message_content, colevent: colevent, phone_number: colevent.collaborator.phone_pro, destination: 'outbound')
-        # message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
+        message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
 
       end
       redirect_to event_path(@event)
@@ -79,8 +79,9 @@ class EventsController < ApplicationController
   end
 
   def show
+    @message = Message.new
     authorize @event
-    unsafe = @event.colevents.where(safe: false).count
+    unsafe = @event.colevents.where(safe: 'pending').count
     total_collaborators = @event.collaborators.count
     if total_collaborators == 0
       redirect_to new_event_path
@@ -92,6 +93,12 @@ class EventsController < ApplicationController
 
   def archive
     @event.status = "over"
+  end
+
+  def specific_sms
+  message_content = params[:event][:template][:description]
+  @message = Message.create(content: message_content, colevent: c, phone_number: c.collaborator.phone_pro, destination: 'outbound')
+  @message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
   end
 
   private

@@ -55,22 +55,27 @@
        <!-- Each employee -->
       <% @event.colevents.each do |c| %>
       <!-- Collaborator statuts-name modal call -->
+      <%= render partial: "shared/collaborator_view_message",
+      locals: {collaborator: c.collaborator, colevent: c, message: c.messages.last} %>
       <%= render partial: "shared/collaborator_status_change",
       locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
       <%= render partial: "shared/send_specific_sms",
-      locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
+      locals: {collaborator: c.collaborator, colevent: c, message: Message.new} %>
       <!-- End of collaborator statuts-name modal call -->
           <td class="center-headers"><%= c.collaborator.last_name %></td>
           <td class="center-headers"><%= c.collaborator.first_name %></td>
-          <% if c.safe? %>
+          <% if c.safe == 'safe' %>
             <td><div class="bubble-safe"></div></td>
+          <% elsif c.safe == 'suspect' %>
+            <td><div class="bubble-suspect"></td>
           <% else %>
             <td><div class="bubble-pending"></td>
           <% end %>
           <td class="center-headers"><%= c.collaborator.continent %>, <%= c.collaborator.country %>, <%= c.collaborator.city %></td>
-          <td colspan="2" class="actions-icons"><%= link_to "", "#", class: "fas fa-eye" %>
-          <a class="fas fa-exchange-alt white" data-toggle="modal" data-target="#exampleModalCenter<%= c.collaborator.id  %>">
-          </a>
+
+          <td colspan="2" class="actions-icons">
+            <button style="background-color: transparent; border-color: transparent;" type="button" class="fas fa-eye" data-toggle="modal" data-target="#exampleModalContent<%= c.collaborator.id  %>"></button>
+            <button style="background-color: transparent; border-color: transparent;" type="button" class="fas fa-exchange-alt white" data-toggle="modal" data-target="#exampleModalCenter<%= c.collaborator.id  %>"></button>
             <button style="background-color: transparent; border-color: transparent;" type="button" class="fas fa-envelope" data-toggle="modal" data-target="#exampleModalSMS<%= c.collaborator.id  %>"></button>
           </td>
         </tr>

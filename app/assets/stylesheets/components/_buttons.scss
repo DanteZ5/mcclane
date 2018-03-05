@@ -35,6 +35,7 @@
   opacity: 0.8;
   background-color: #2EB872;
   margin-bottom: 10px;
+  width: 100px;
 }
 .btn-safe:hover {
   opacity: 1;
@@ -43,6 +44,7 @@
   border: 1px solid #2EB872;
   background-color: #2EB872;
 }
+
 .btn-pending {
   color: white;
   border: 1px solid orange;
@@ -51,6 +53,7 @@
   opacity: 0.8;
   background-color: orange;
   margin-bottom: 10px;
+  width: 100px;
 }
 .btn-pending:hover {
   opacity: 1;
@@ -58,4 +61,21 @@
   color: white;
   border: 1px solid orange;
   background-color: orange;
+}
+.btn-suspect {
+  color: white;
+  border: 1px solid #3176A9;
+  padding: 10px 10px;
+  border-radius: 5px;
+  opacity: 0.8;
+  background-color: #3176A9;
+  margin-bottom: 10px;
+  width: 100px;
+}
+.btn-suspect:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #3176A9;
+  background-color: #3176A9;
 }

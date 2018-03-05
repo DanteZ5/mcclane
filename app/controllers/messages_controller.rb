@@ -21,8 +21,9 @@ class MessagesController < ApplicationController
     @message.colevent_id = params[:colevent_id]
     @message.destination = 'outbound'
     authorize @message
-    @message.save
+    @message.save!
     @message.send_sms # methode dans model
+    redirect_to event_path(@message.colevent.event)
   end
 
   private

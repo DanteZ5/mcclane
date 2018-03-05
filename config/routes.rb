@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :colevents, only: [:show, :update] do
     resources :messages, only: [:new, :create]
     get '/mark_unsafe', to: 'colevents#mark_unsafe'
+    get '/mark_suspect', to: 'colevents#mark_suspect'
   end
 
 

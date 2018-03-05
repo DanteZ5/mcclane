@@ -1,0 +1,28 @@
+<div class="modal fade" id="exampleModalContent<%= collaborator.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalContentTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">View last message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <% if message.destination == 'outbound' %>
+          <p style ="color: orange">This user didn't answer yet</p>
+        <% else %>
+          <%= message.content %>
+        <% end %>
+      </div>
+
+      <div class="modal-footer">
+        <%= link_to colevent_path(colevent), method: :patch do %>
+          <button type="button" class="btn-safe" data-dismiss="modal">Safe</button>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
