@@ -5,7 +5,7 @@ Rails.application.configure do
 
 
   config.action_cable.url = "wss://www.mcclane.tech/cable"
-  config.action_cable.allowed_request_origins = [ "http://www.mcclane.tech", "https://www.mcclane.tech"
+  config.action_cable.allowed_request_origins = [ "http://www.mcclane.tech", "https://www.mcclane.tech" ]
 
   # Settings specified here will take precedence over those in config/application.rb.
 
