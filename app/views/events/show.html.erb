@@ -62,8 +62,10 @@
       <!-- End of collaborator statuts-name modal call -->
           <td class="center-headers"><%= c.collaborator.last_name %></td>
           <td class="center-headers"><%= c.collaborator.first_name %></td>
-          <% if c.safe? %>
+          <% if c.safe == 'safe' %>
             <td><div class="bubble-safe"></div></td>
+          <% elsif c.safe == 'suspect' %>
+            <td><div class="bubble-suspect"></td>
           <% else %>
             <td><div class="bubble-pending"></td>
           <% end %>

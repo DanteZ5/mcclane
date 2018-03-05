@@ -65,7 +65,7 @@ puts "creating colevent"
 
 collabs = Collaborator.all
 collabs.each do |c|
-  Colevent.create(event: events.first, collaborator: c, safe: false)
+  Colevent.create(event: events.first, collaborator: c, safe: 'pending')
 end
 
 

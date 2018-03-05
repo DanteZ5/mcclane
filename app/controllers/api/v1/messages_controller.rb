@@ -20,7 +20,11 @@ class Api::V1::MessagesController < Api::V1::BaseController
       # on veut passer colevent concerne en 'safe' des qu'on reçoit le message
       unless @message.content.nil?
         ce = @message.colevent
-        ce.update(safe: true, safe_time: Time.now)
+        if @message.content == '1'
+          ce.update(safe: 'safe', safe_time: Time.now)
+        else
+          ce.update(safe: 'suspect', safe_time: Time.now)
+        end
       end
     end
 
