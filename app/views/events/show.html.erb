@@ -19,6 +19,7 @@
       <%= render partial: "shared/edit_messages" %>
       <button type="button" class="btn-edit pull-right" data-toggle="modal" data-target="#exampleModalLong">
       Edit messages</button>
+      <%= link_to 'close event', close_event_path(@event), method: :patch %>
     </div>
   </div>
 

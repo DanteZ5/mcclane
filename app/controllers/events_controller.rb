@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :archive, :status_change]
+  before_action :set_event, only: [:show, :archive, :status_change, :close]
   def index
     @events = policy_scope(Event)
 
@@ -106,6 +106,12 @@ class EventsController < ApplicationController
   message_content = params[:event][:template][:description]
   @message = Message.create(content: message_content, colevent: c, phone_number: c.collaborator.phone_pro, destination: 'outbound')
   @message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
+  end
+
+  def close
+    authorize @event
+    @event.update(status: 'closed', end_date: Time.now)
+    redirect_to events_path
   end
 
   private

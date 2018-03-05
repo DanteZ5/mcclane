@@ -18,7 +18,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :events
+  resources :events do
+    member do
+      patch 'close'
+    end
+  end
+
+
   resources :colevents, only: [:show, :update] do
     resources :messages, only: [:new, :create]
     get '/mark_unsafe', to: 'colevents#mark_unsafe'
