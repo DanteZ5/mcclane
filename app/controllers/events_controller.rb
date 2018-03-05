@@ -81,6 +81,11 @@ class EventsController < ApplicationController
   def show
     @message = Message.new
     authorize @event
+
+    # permet de sortir colevents par priorites
+    priorities = {'suspect'=>1, 'pending'=>2, 'safe'=>3}
+    @colevents = @event.colevents.sort {|x, y| priorities[x.safe] <=> priorities[y.safe]}
+
     unsafe = @event.colevents.where(safe: 'pending').count
     suspect = @event.colevents.where(safe: 'suspect').count
     total_collaborators = @event.collaborators.count
