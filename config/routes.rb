@@ -12,6 +12,12 @@ Rails.application.routes.draw do
     get 'login', to: "pages#home"
   end
 
+  resources :collaborators, only: [] do
+    collection do
+      get :count
+    end
+  end
+
   resources :events
   resources :colevents, only: [:show, :update] do
     resources :messages, only: [:new, :create]

@@ -1,7 +1,41 @@
 class CollaboratorsController < ApplicationController
+  skip_after_action :verify_authorized, only: :count
+  after_action :verify_policy_scoped, only: :count
 
   def index
+  end
 
+  def count
+    continents = params[:continents]
+    countries = params[:countries]
+    cities = params[:cities]
+
+    filters = {}
+
+    filters[:continent] = continents if continents.present?
+    filters[:country] = countries if countries.present?
+    filters[:city] = cities if cities.present?
+
+    # filters
+    # => {
+    #   continent: ["France", "Afrique"],
+    #   country: ["Maroc"],
+    #   city: ["Tokyo"]
+    # }
+
+    collaborators = policy_scope(Collaborator)
+    # => collaborators = Collaborator.where(user_id: current_user.id)
+    conditions = filters.map { |filter_name, values| "#{filter_name} IN (?)" }.join(" OR ")
+
+    # conditions
+    # => "continent IN ? OR country IN ? OR city in ?"
+
+    collaborators_count = collaborators.where(conditions, *filters.values).count
+    render json: { count: collaborators_count }
+  end
+
+  def show
+    # @collaborator = Collaborator.find(params[:id])
   end
 
 end
