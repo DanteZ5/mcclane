@@ -81,6 +81,7 @@ class EventsController < ApplicationController
   def show
     @message = Message.new
     authorize @event
+    @event.colevents.order(:safe)
     unsafe = @event.colevents.where(safe: 'pending').count
     suspect = @event.colevents.where(safe: 'suspect').count
     total_collaborators = @event.collaborators.count
@@ -89,8 +90,7 @@ class EventsController < ApplicationController
     else
       @unsafe_percentage = (unsafe * 100) / total_collaborators
       @suspect_percentage = (suspect * 100) / total_collaborators
-      @safe_percentage = 100 - @unsafe_percentage -@suspect_percentage
-
+      @safe_percentage = 100 - @unsafe_percentage - @suspect_percentage
     end
   end
 
