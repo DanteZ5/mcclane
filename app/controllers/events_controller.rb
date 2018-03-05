@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     # @events = Event.select { |c| c.user == current_user }
     ev = Event.arel_table
     events = Event.where(ev[:user_id].eq(current_user.id))
-    @events = events.order(:updated_at).reverse
+    @events = events.order(:status, :updated_at).reverse
   end
 
   def new

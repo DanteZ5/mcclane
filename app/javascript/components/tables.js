@@ -18,9 +18,12 @@ $(document).ready(function() {
   });
 
   var jobCount = $('.results tbody tr[visible="true"]').length;
-    $('.counter').text(jobCount + ' item');
 
-  if(jobCount == '0') {$('.no-result').show();}
-    else {$('.no-result').hide();}
-      });
+
+    if(jobCount == '1' || jobCount == '0') {$('.counter').text(jobCount + ' item');}
+    else {$('.counter').text(jobCount + ' items');}
+
+    if(jobCount == '0') {$('.no-result').show();}
+      else {$('.no-result').hide();}
+        });
 });
