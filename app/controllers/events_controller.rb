@@ -57,7 +57,7 @@ class EventsController < ApplicationController
 
       collaborators.each do |collaborator|
         # cree plusieurs instances Colevent
-        colevent = Colevent.create(collaborator: collaborator, event: @event, safe: false)
+        colevent = Colevent.create(collaborator: collaborator, event: @event, safe: "pendit")
         # cree plusieurs instannces messages (pour chaque colevent)
         message = Message.create(content: message_content, colevent: colevent, phone_number: colevent.collaborator.phone_pro, destination: 'outbound')
         message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
@@ -72,7 +72,7 @@ class EventsController < ApplicationController
 
   def show
     authorize @event
-    unsafe = @event.colevents.where(safe: false).count
+    unsafe = @event.colevents.where(safe: 'pendit').count
     total_collaborators = @event.collaborators.count
     if total_collaborators == 0
       redirect_to new_event_path
