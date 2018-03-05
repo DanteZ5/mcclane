@@ -8,10 +8,10 @@
           </button>
         </div>
         <div class="modal-body">
-         <%= simple_form_for @event do |f| %>
-         <%= f.fields_for :template do |template_form| %>
-         <%= template_form.input :description, as: :text, placeholder:"Are you ok #{collaborator.first_name} #{collaborator.last_name}?" %>
-         <% end %>
+         <%= simple_form_for [colevent, message] do |f| %>
+
+          <%= f.input :content, as: :text, placeholder:"Are you ok #{collaborator.first_name} #{collaborator.last_name}?" %>
+          <%= f.input :phone_number, as: :hidden, input_html: { value: collaborator.phone_pro }  %>
 
          <div class="mess">
           <div class="he"><span class="left">Messages</span>
@@ -20,12 +20,11 @@
           <div class="messages-wrapper">
             <br>
             <div class="message to" style="text-align: right;">...</div>
-            <br><br><br><br><br><br><br><br><br><br><br><br>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <%= f.submit "Send", class: "btn-main" %>
+        <%= f.submit "Send", class: "btn-main", data: { confirm: 'Do you really want to send this message?' } %>
         <% end %>
       </div>
     </div>
