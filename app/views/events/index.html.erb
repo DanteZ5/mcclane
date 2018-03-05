@@ -15,7 +15,7 @@
             <% if event.status == "ongoing" %>
               <span style= "color: #E67E22;">on-going</span>
             <% else %>
-              <span style= "color: #17b978;">closed at <%= event.end_date %></span>
+              <span style= "color: #17b978;">closed at <%= Time.parse(event.end_date).strftime("%d/%m/%Y")%></span>
             <% end %>
             <p><%= safe_perc || 100%>% of people are safe</p>
           </p>
