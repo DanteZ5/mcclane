@@ -13,6 +13,8 @@ gem 'twilio-ruby'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 gem 'faker'
+gem 'sprockets', '>= 3.0.0'
+gem 'sprockets-es6'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
