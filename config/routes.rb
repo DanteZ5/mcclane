@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   end
   get 'messages/create'
 
+  mount ActionCable.server => "/cable"
+
   devise_for :users
   root to: "events#new"
 
@@ -30,6 +32,8 @@ Rails.application.routes.draw do
     get '/mark_unsafe', to: 'colevents#mark_unsafe'
     get '/mark_suspect', to: 'colevents#mark_suspect'
   end
+
+
 
 
 

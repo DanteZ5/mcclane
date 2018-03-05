@@ -3,6 +3,10 @@ Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = false
 
+
+  config.action_cable.url = "wss://www.mcclane.tech/cable"
+  config.action_cable.allowed_request_origins = [ "http://www.mcclane.tech", "https://www.mcclane.tech"
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
