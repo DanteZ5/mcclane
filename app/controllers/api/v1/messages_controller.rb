@@ -16,6 +16,9 @@ class Api::V1::MessagesController < Api::V1::BaseController
 
       # sauvegarde de l'instance
       @message.save
+      # msg = Message.last
+      # ActionCable.server.broadcast("event_#{msg.colevent.event.id}", {colevent_id: msg.colevent_id})
+      ActionCable.server.broadcast("event_#{@message.colevent.event.id}", {colevent_id: @message.colevent_id, safe: @message.colevent.safe})
 
       # on veut passer colevent concerne en 'safe' des qu'on reçoit le message
       unless @message.content.nil?
@@ -31,4 +34,6 @@ class Api::V1::MessagesController < Api::V1::BaseController
     # render json: { ok: true }
     head :no_content
   end
+
+
 end
