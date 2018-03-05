@@ -6,7 +6,6 @@ class SmsJob < ApplicationJob
     account_sid = ENV["account_sid"] # Your Account SID from www.twilio.com/console
     auth_token = ENV["auth_token"]   # Your Auth Token from www.twilio.com/console
     @client = Twilio::REST::Client.new account_sid, auth_token
-
     body = message.content
     to = message.phone_number
     @client.messages.create(

@@ -79,6 +79,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @message = Message.new
     authorize @event
     unsafe = @event.colevents.where(safe: 'pending').count
     total_collaborators = @event.collaborators.count
@@ -92,6 +93,12 @@ class EventsController < ApplicationController
 
   def archive
     @event.status = "over"
+  end
+
+  def specific_sms
+  message_content = params[:event][:template][:description]
+  @message = Message.create(content: message_content, colevent: c, phone_number: c.collaborator.phone_pro, destination: 'outbound')
+  @message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
   end
 
   private
