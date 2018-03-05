@@ -13,18 +13,20 @@
 
   <div class="row">
     <div class="col-xs-6">
-      <p><%= @event.name%>| <%= @event.status %></p>
+      <p><%= @event.name %></p>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-6" style="text-align: right;">
+      <%= render partial: "shared/edit_messages" %>
+      <button type="button" class="btn-main" data-toggle="modal" data-target="#exampleModalLong">
+      Edit messages</button>
       <% if @event.status == "ongoing" %>
-        <%= link_to 'Close event', close_event_path(@event), method: :patch, class: "btn-main pull-right", data: { confirm: 'Do you really want to close this event?' }  %>
+        <%= link_to 'Close event', close_event_path(@event), method: :patch, class: "btn-main", data: { confirm: 'Do you really want to close this event?' }  %>
       <% else %>
-        <p class="pull-right btn btn-success">Event closed</p>
+        <button type="button" class="btn-main disabled">Closed</button>
       <% end %>
     </div>
   </div>
   <br>
-
 
   <!-- Progress bar -->
   <%= render 'progress_bar' %>
@@ -35,11 +37,6 @@
     <input type="text" class="search form-control" placeholder="Filter">
   </div>
   <span class="counter pull-left"></span>
-  <div class="form-group pull-right">
-    <%= render partial: "shared/edit_messages" %>
-      <button type="button" class="btn-edit pull-right" data-toggle="modal" data-target="#exampleModalLong">
-      Edit messages</button>
-  </div>
   <div class="table-space">
     <table class="table table-dark table-hover results">
       <thead>
@@ -51,7 +48,7 @@
           <th scope="col" colspan="2" class="center-headers">Actions</th>
         </tr>
         <tr class="warning no-result">
-          <td colspan="4"><i class="fa fa-warning"></i> No result</td>
+          <td colspan="6"><i class="fa fa-warning"></i> No result</td>
         </tr>
       </thead>
       <tbody>
