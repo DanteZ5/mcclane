@@ -2,6 +2,11 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :archive, :status_change]
   def index
     @events = policy_scope(Event)
+
+    # @events = Event.select { |c| c.user == current_user }
+    ev = Event.arel_table
+    events = Event.where(ev[:user_id].eq(current_user.id))
+    @events = events.order(:updated_at).reverse
   end
 
   def new
@@ -47,11 +52,14 @@ class EventsController < ApplicationController
       template = Template.create(content: message_content, event: @event, slot: 5, order: 0)
 
       c = Collaborator.arel_table
-      collaborators = Collaborator.where((c[:user_id].eq(current_user.id)).
-        and(c[:continent].in(params[:continent])).
-        or(c[:country].in(params[:country])).
-        or(c[:city].in(params[:city]))).distinct
+      # collab = Collaborator.where(c[:user_id].eq(current_user.id))
 
+      collaborators = Collaborator.where(
+        (c[:continent].in(params[:continent])).
+        or(c[:country].in(params[:country])).
+        or(c[:city].in(params[:city])).
+        and(c[:user_id].eq(current_user.id))
+        ).distinct
       # collaborators = Collaborator.where(user_id: current_user, continent: params[:continent],country: params[:country], city: params[:city])
 
 
@@ -60,7 +68,7 @@ class EventsController < ApplicationController
         colevent = Colevent.create(collaborator: collaborator, event: @event, safe: false)
         # cree plusieurs instannces messages (pour chaque colevent)
         message = Message.create(content: message_content, colevent: colevent, phone_number: colevent.collaborator.phone_pro, destination: 'outbound')
-        message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
+        # message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
 
       end
       redirect_to event_path(@event)
