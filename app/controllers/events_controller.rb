@@ -81,7 +81,6 @@ class EventsController < ApplicationController
   def show
     @message = Message.new
     authorize @event
-    @event.colevents.order(:safe)
     unsafe = @event.colevents.where(safe: 'pending').count
     suspect = @event.colevents.where(safe: 'suspect').count
     total_collaborators = @event.collaborators.count
