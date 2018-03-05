@@ -16,7 +16,9 @@
       <p><%= @event.name%>| <%= @event.status %></p>
     </div>
     <div class="col-xs-6">
-      <button class="btn-edit pull-right">Edit messages</button>
+      <%= render partial: "shared/edit_messages" %>
+      <button type="button" class="btn-edit pull-right" data-toggle="modal" data-target="#exampleModalLong">
+      Edit messages</button>
     </div>
   </div>
 
@@ -24,12 +26,6 @@
   <!-- Progress bar -->
   <%= render 'progress_bar' %>
 
-  <!-- Edit message -->
- <!--  <div class="row">
-    <div class="col-xs-3">
-      <%= render 'filter_colevent' %>
-    </div>
-  </div> -->
 
   <!-- Collaborators table with inline status -->
   <div class="form-group pull-left">
