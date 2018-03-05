@@ -88,8 +88,19 @@
   <script>
     App['event_<%= @event.id %>'] = App.cable.subscriptions.create(
       { channel: 'StatusUpdatesChannel', event_id: <%= @event.id %> },
-      { received: (data) => {
-        console.log( "l'id est colevent_${data.colevent_id}"),
-    }});
+      {
+        received: (data) => {
+          const c_id = data.colevent_id;
+          const status = data.safe;
+          const c_row = document.getElementById("colevent_" + c_id);
+          const c_bubble = c_row.querySelector("td:nth-child(3) div");
+          if (status === "safe") {
+            c_bubble.classList.replace("bubble-pending", "bubble-safe" );
+          } else if (status === "suspect") {
+            c_bubble.classList.replace("bubble-pending", "bubble-suspect" );
+          }
+        }
+      }
+    )
   </script>
 <% end %>
