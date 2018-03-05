@@ -15,5 +15,13 @@ class ColeventsController < ApplicationController
     redirect_to event_path(@colevent.event)
   end
 
+   def mark_suspect
+    @colevent = Colevent.find(params[:colevent_id])
+    authorize @colevent
+    @colevent.safe = 'suspect'
+    @colevent.save
+    redirect_to event_path(@colevent.event)
+  end
+
 end
 

@@ -22,6 +22,9 @@
         <%= link_to colevent_path(colevent), method: :patch do %>
           <button type="button" class="btn-safe" data-dismiss="modal">Safe</button>
         <% end %>
+        <%= link_to colevent_mark_suspect_path(colevent), method: :get do %>
+          <button type="button" class="btn-suspect" data-dismiss="modal">Suspect</button>
+        <% end %>
       </div>
     </div>
   </div>

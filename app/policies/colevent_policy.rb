@@ -13,4 +13,8 @@ class ColeventPolicy < ApplicationPolicy
     update?
   end
 
+  def mark_suspect?
+    update?
+  end
+
 end
