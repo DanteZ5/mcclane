@@ -54,7 +54,7 @@
 
        <!-- Each employee -->
 
-      <% @event.colevents.each do |c| %>
+      <% @colevents.each do |c| %>
       <!-- Collaborator statuts-name modal call -->
       <%= render partial: "shared/collaborator_view_message",
       locals: {collaborator: c.collaborator, colevent: c, message: c.messages.last} %>
