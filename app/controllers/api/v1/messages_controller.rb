@@ -29,9 +29,10 @@ class Api::V1::MessagesController < Api::V1::BaseController
         end
       end
     end
-    unsafe = @message.colevents.where(safe: 'pending').count
-    suspect = @message.colevents.where(safe: 'suspect').count
-    total_collaborators = @message.colevents.collaborators.count
+    event = @message.colevent.event
+    unsafe = event.colevents.where(safe: 'pending').count
+    suspect = event.colevents.where(safe: 'suspect').count
+    total_collaborators = event.colevents.collaborators.count
     if total_collaborators == 0
       redirect_to new_event_path
     else
@@ -41,7 +42,6 @@ class Api::V1::MessagesController < Api::V1::BaseController
     end
       ActionCable.server.broadcast("event_#{@message.colevent.event.id}",
        {colevent_id: @message.colevent_id, safe: @message.colevent.safe, unsafe_percentage: @unsafe_percentage, suspect_percentage: @suspect_percentage, safe_perecentage: @safe_percentage})
-
     # render json: { ok: true }
     head :no_content
   end
