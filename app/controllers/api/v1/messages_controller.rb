@@ -32,7 +32,7 @@ class Api::V1::MessagesController < Api::V1::BaseController
     event = @message.colevent.event
     unsafe = event.colevents.where(safe: 'pending').count
     suspect = event.colevents.where(safe: 'suspect').count
-    total_collaborators = event.colevents.collaborators.count
+    total_collaborators = event.user.collaborators.count
     if total_collaborators == 0
       redirect_to new_event_path
     else
