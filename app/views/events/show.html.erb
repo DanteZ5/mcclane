@@ -133,11 +133,10 @@
 
           progress_pending.style.width = (pending + "%");
           progress_pending_value.innerHTML = (pending + "%");
-          console.log(data)
 
           if (status === "safe") {
             c_bubble.classList.remove("bubble-pending", "bubble-suspect" )
-            c_bubble.classList.add("bubble-safe");
+             c_bubble.classList.add("bubble-safe");
           } else if (status === "suspect") {
             c_bubble.classList.remove("bubble-pending", "bubble-safe" );
             c_bubble.classList.add("bubble-suspect");
