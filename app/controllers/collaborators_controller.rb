@@ -6,15 +6,16 @@ class CollaboratorsController < ApplicationController
   end
 
   def count
-    continents = params[:continents]
-    countries = params[:countries]
-    cities = params[:cities]
+    # continents = params[:continents]
+    # countries = params[:countries]
+    # cities = params[:cities]
+    areas = params[:areas]
 
-    filters = {}
+    # filters = {}
 
-    filters[:continent] = continents if continents.present?
-    filters[:country] = countries if countries.present?
-    filters[:city] = cities if cities.present?
+    # filters[:continent] = continents if continents.present?
+    # filters[:country] = countries if countries.present?
+    # filters[:city] = cities if cities.present?
 
     # filters
     # => {
@@ -24,13 +25,16 @@ class CollaboratorsController < ApplicationController
     # }
 
     collaborators = policy_scope(Collaborator)
-    # => collaborators = Collaborator.where(user_id: current_user.id)
-    conditions = filters.map { |filter_name, values| "#{filter_name} IN (?)" }.join(" OR ")
+    # # => collaborators = Collaborator.where(user_id: current_user.id)
+    # conditions = filters.map { |filter_name, values| "#{filter_name} IN (?)" }.join(" OR ")
+    # # conditions
+    # # => "continent IN ? OR country IN ? OR city in ?"
+    # collaborators_count = collaborators.where(conditions, *filters.values).count
 
-    # conditions
-    # => "continent IN ? OR country IN ? OR city in ?"
 
-    collaborators_count = collaborators.where(conditions, *filters.values).count
+    conditions = "continent IN (:areas) OR country IN (:areas) OR city IN (:areas)"
+    collaborators_count = collaborators.where(conditions, areas: areas).count
+
     render json: { count: collaborators_count }
   end
 
