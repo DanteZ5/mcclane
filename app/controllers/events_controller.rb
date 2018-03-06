@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :archive, :status_change, :close]
+  before_action :set_event, only: [:show, :archive, :status_change, :close, :edit_messages]
   def index
     @events = policy_scope(Event)
 
@@ -50,8 +50,8 @@ class EventsController < ApplicationController
       # Si save, cree plusieurs instances template
       message_content = params[:event][:template][:description]
       Template.create(content: message_content, event: @event, slot: 0, order: 0)
-      Template.create(content: "IMPORTANT : #{message_content}", event: @event, slot: 2, order: 1)
-      Template.create(content: "URGENT : #{message_content} AS SOON AS POSSIBLE", event: @event, slot: 5, order: 2)
+      Template.create(content: "IMPORTANT, Answer '1' if you're safe", event: @event, slot: 2, order: 1)
+      Template.create(content: "URGENT / IMPORTANT, Answer '1' if you're safe", event: @event, slot: 6, order: 2)
 
       # ne target que les collabs selecitonnes
       c = Collaborator.arel_table
@@ -89,14 +89,15 @@ class EventsController < ApplicationController
     @colevents = @event.colevents.sort {|x, y| priorities[x.safe] <=> priorities[y.safe]}
 
     unsafe = @event.colevents.where(safe: 'pending').count
+    safe = @event.colevents.where(safe: 'safe').count
     suspect = @event.colevents.where(safe: 'suspect').count
     total_collaborators = @event.collaborators.count
     if total_collaborators == 0
       redirect_to new_event_path
     else
-      @unsafe_percentage = (unsafe * 100) / total_collaborators
       @suspect_percentage = (suspect * 100) / total_collaborators
-      @safe_percentage = 100 - @unsafe_percentage - @suspect_percentage
+      @safe_percentage = safe * 100 / total_collaborators
+      @unsafe_percentage = 100 - @suspect_percentage - @safe_percentage
     end
   end
 
@@ -114,6 +115,14 @@ class EventsController < ApplicationController
     authorize @event
     @event.update(status: 'closed', end_date: Time.now)
     redirect_to events_path
+  end
+
+  def edit_messages
+    authorize @event
+    @event.templates.each_with_index do |t, i|
+      t.update(content: params[:event][:templates_attributes]["#{i}"]["content"])
+    end
+    redirect_to event_path(@event)
   end
 
   private
