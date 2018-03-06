@@ -53,14 +53,12 @@ class EventsController < ApplicationController
       Template.create(content: "IMPORTANT, Answer '1' if you're safe", event: @event, slot: 2, order: 1)
       Template.create(content: "URGENT / IMPORTANT, Answer '1' if you're safe", event: @event, slot: 6, order: 2)
 
-      # ne target que les collabs selecitonnes
-      c = Collaborator.arel_table
-      collaborators = Collaborator.where(
-        (c[:continent].in(params[:continent])).
-        or(c[:country].in(params[:country])).
-        or(c[:city].in(params[:city])).
-        and(c[:user_id].eq(current_user.id))
-        ).distinct
+      # ne target que les collabs selectionnes
+      areas = params[:area]
+      collaborators = policy_scope(Collaborator)
+      conditions = "continent IN (:areas) OR country IN (:areas) OR city IN (:areas)"
+      collaborators = collaborators.where(conditions, areas: areas)
+
 
       # on itere sur collab, on cree les instances messages, on planifie les jobs
       collaborators.each do |collaborator|
@@ -73,6 +71,7 @@ class EventsController < ApplicationController
       end
 
       # on renvoie vers le monitoring
+
       redirect_to event_path(@event)
 
     else
