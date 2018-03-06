@@ -11,18 +11,21 @@
      </div>
    </div>
 
-  <div class="row">
+<div id="sticky-anchor"></div>
+<div id="sticky">
+  <div class="row" style="margin-top: 10px">
     <div class="col-xs-6">
-      <p><%= @event.name %></p>
+      <p><% name = @event.templates[0].content.split(' ')[0..4].join(' ') unless @event.templates[0].nil? %>
+        <%= name || @event.name %>
+      </p>
     </div>
-    <div class="col-xs-6" style="text-align: right;">
-      <%= render partial: "shared/edit_messages" %>
-      <button type="button" class="btn-main" data-toggle="modal" data-target="#exampleModalLong">
-      Edit messages</button>
+    <div class="col-xs-6" style="text-align: right; margin-top: 10px">
       <% if @event.status == "ongoing" %>
         <%= link_to 'Close event', close_event_path(@event), method: :patch, class: "btn-main", data: { confirm: 'Do you really want to close this event?' }  %>
       <% else %>
-        <button type="button" class="btn-main disabled">Closed</button>
+        <div style="color: green;">
+          <p>Event closed <i class="far fa-check-circle"></i></p>
+        </div>
       <% end %>
     </div>
   </div>
@@ -30,15 +33,22 @@
 
   <!-- Progress bar -->
   <%= render 'progress_bar' %>
-
   <!-- Search bar -->
-  <div class="form-group pull-left">
-    <input type="text" class="search form-control" placeholder="Filter">
+    <div class="form-group pull-left">
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+    <span class="counter pull-left"></span>
+    <!-- Edit messages -->
+    <div class="pull-right">
+      <%= render partial: "shared/edit_messages" %>
+      <button type="button" class="btn-main" data-toggle="modal" data-target="#exampleModalLong">
+      Edit messages</button>
+    </div>
   </div>
-  <span class="counter pull-left"></span>
+
   <!-- Collaborators table with inline status -->
   <div class="table-space">
-    <table class="table table-dark table-hover results">
+    <table class="table table-dark table-hover results table-responsive">
       <thead>
         <tr>
           <th scope="col" class="center-headers">Last name</th>
