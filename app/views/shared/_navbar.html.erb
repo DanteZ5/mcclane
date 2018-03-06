@@ -19,8 +19,13 @@
               <% end %>
             </li>
             <li>
+              <%= link_to new_event_path do %>
+                <i class="fas fa-plus"></i>  <%= t(".new", default: "New Alert") %>
+              <% end %>
+            </li>
+            <li>
               <%= link_to collaborators_path do %>
-                <i class="fas fa-plus"></i>  <%= t(".index", default: "Add collaborators") %>
+                <i class="fas fa-users"></i>  <%= t(".index", default: "Collaborators") %>
               <% end %>
             </li>
             <li>
@@ -28,6 +33,7 @@
                 <i class="fas fa-sign-out-alt"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
+
           </ul>
         </div>
       </div>
