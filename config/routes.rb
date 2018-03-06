@@ -3,16 +3,16 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
-  get 'messages/create'
 
   mount ActionCable.server => "/cable"
 
   devise_for :users
-  root to: "events#new"
 
   devise_scope :user do
     get 'login', to: "pages#home"
   end
+
+  root to: "pages#guide"
 
   resources :collaborators, only: [] do
     collection do
@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   end
 
 
+  get 'messages/create'
 
 
 
