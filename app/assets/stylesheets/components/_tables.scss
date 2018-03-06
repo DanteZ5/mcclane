@@ -42,6 +42,7 @@
   width: 15px;
   border-radius: 50%;
   margin: 0px auto;
+  transition: all 1s ease-out;
 }
 .bubble-pending {
   background-color: #E67E22;
@@ -49,13 +50,17 @@
   width: 15px;
   border-radius: 50%;
   margin: 0px auto;
+  transition: all 1s ease-out;
 }
+
+
 .bubble-suspect {
   background-color: #0278AE;
   height: 15px;
   width: 15px;
   border-radius: 50%;
   margin: 0px auto;
+  transition: all 1s ease-out;
 }
 .results tr[visible='false'],
 .no-result{

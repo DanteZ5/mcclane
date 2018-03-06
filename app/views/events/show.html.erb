@@ -136,10 +136,11 @@
 
 
           if (status === "safe") {
-            c_bubble.classList.replace("bubble-pending", "bubble-safe" );
-            console.log(data)
+            c_bubble.classList.remove("bubble-pending", "bubble-suspect" )
+            c_bubble.classList.add("bubble-safe");
           } else if (status === "suspect") {
-            c_bubble.classList.replace("bubble-pending", "bubble-suspect" );
+            c_bubble.classList.remove("bubble-pending", "bubble-safe" );
+            c_bubble.classList.add("bubble-suspect");
           }
         }
       }
