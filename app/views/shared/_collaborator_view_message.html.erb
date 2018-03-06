@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
 
-        <% if message.destination == 'outbound' %>
+        <% if message.nil? %>
           <p style ="color: orange">This user didn't answer on last message</p>
         <% else %>
           <%= message.content %>

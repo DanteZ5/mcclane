@@ -47,30 +47,32 @@ class EventsController < ApplicationController
     authorize @event
 
     if @event.save
-      # Si save, cree une instance template
+      # Si save, cree plusieurs instances template
       message_content = params[:event][:template][:description]
-      template = Template.create(content: message_content, event: @event, slot: 5, order: 0)
+      Template.create(content: message_content, event: @event, slot: 0, order: 0)
+      Template.create(content: "IMPORTANT : #{message_content}", event: @event, slot: 2, order: 1)
+      Template.create(content: "URGENT : #{message_content} AS SOON AS POSSIBLE", event: @event, slot: 5, order: 2)
 
+      # ne target que les collabs selecitonnes
       c = Collaborator.arel_table
-      # collab = Collaborator.where(c[:user_id].eq(current_user.id))
-
       collaborators = Collaborator.where(
         (c[:continent].in(params[:continent])).
         or(c[:country].in(params[:country])).
         or(c[:city].in(params[:city])).
         and(c[:user_id].eq(current_user.id))
         ).distinct
-      # collaborators = Collaborator.where(user_id: current_user, continent: params[:continent],country: params[:country], city: params[:city])
 
-
+      # on itere sur collab, on cree les instances messages, on planifie les jobs
       collaborators.each do |collaborator|
         # cree plusieurs instances Colevent
         colevent = Colevent.create(collaborator: collaborator, event: @event, safe: "pending")
-        # cree plusieurs instannces messages (pour chaque colevent)
-        message = Message.create(content: message_content, colevent: colevent, phone_number: colevent.collaborator.phone_pro, destination: 'outbound')
-        # message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
-
+        # cree plusieurs instances messages (pour chaque colevent)
+        @event.templates.each do |t|
+          SmsJob.set(wait: t.slot.minutes).perform_later(t.id, colevent.id) unless collaborator.phone_pro == 'stop'
+        end
       end
+
+      # on renvoie vers le monitoring
       redirect_to event_path(@event)
 
     else
