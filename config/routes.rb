@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :events do
     member do
       patch 'close'
+      patch 'edit_messages'
     end
   end
 

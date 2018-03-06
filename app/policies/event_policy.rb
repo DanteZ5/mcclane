@@ -20,6 +20,10 @@ class EventPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def edit_messages?
+    record.user == user
+  end
+
 
   class Scope < Scope
     def resolve

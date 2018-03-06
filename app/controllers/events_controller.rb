@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :archive, :status_change, :close]
+  before_action :set_event, only: [:show, :archive, :status_change, :close, :edit_messages]
   def index
     @events = policy_scope(Event)
 
@@ -115,6 +115,14 @@ class EventsController < ApplicationController
     authorize @event
     @event.update(status: 'closed', end_date: Time.now)
     redirect_to events_path
+  end
+
+  def edit_messages
+    authorize @event
+    @event.templates.each_with_index do |t, i|
+      t.update(content: params[:event][:templates_attributes]["#{i}"]["content"])
+    end
+    redirect_to event_path(@event)
   end
 
   private
