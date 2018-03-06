@@ -3,6 +3,9 @@
   <div class="main-container">
     <div class="card-show">
       <h1>Alerts index</h1>
+      <br>
+      <%= link_to 'New Event', new_event_path, method: :get, class: "btn-main" %>
+
       <% @events.each do |event| %>
       <div class="archive">
         <div class="archive-body">
@@ -16,9 +19,9 @@
               <span style= "color: #E67E22;">on-going</span>
             <% else %>
               <span style= "color: #17b978;">closed at <%= Time.parse(event.end_date).strftime("%d/%m/%Y")%></span>
-            <% end %>
+            <% end %></p>
             <p><%= safe_perc || 100%>% of people are safe</p>
-          </p>
+
         </div>
         <div class="archive-status">
           <%= link_to event_path(event) do %>
