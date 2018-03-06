@@ -112,6 +112,7 @@
           const status = data.safe;
           const c_row = document.getElementById("colevent_" + c_id);
           const c_bubble = c_row.querySelector("td:nth-child(3) div");
+          const tbody = document.querySelector('tbody');
           const safe = data.safe_percentage;
           const pending = data.unsafe_percentage;
           const suspect = data.suspect_percentage;
@@ -137,12 +138,16 @@
           progress_pending_value.innerHTML = (pending + "%");
 
           if (status === "safe") {
-            c_bubble.classList.remove("bubble-pending", "bubble-suspect" )
-             c_bubble.classList.add("bubble-safe");
-             console.log(data)
+            c_bubble.classList.remove("bubble-pending", "bubble-suspect" );
+            c_bubble.classList.add("bubble-safe");
+            c_row.remove();
+            tbody.insertAdjacentHTML('beforeend', c_row.innerHTML);
+            console.log(data)
           } else if (status === "suspect") {
             c_bubble.classList.remove("bubble-pending", "bubble-safe" );
             c_bubble.classList.add("bubble-suspect");
+            c_row.remove();
+            tbody.insertAdjacentHTML('afterbegin', c_row.innerHTML);
             console.log(data)
           }
         }
