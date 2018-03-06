@@ -8,4 +8,9 @@ class CollaboratorPolicy < ApplicationPolicy
   def count?
     true
   end
+
+  def import?
+    true
+  end
+
 end
