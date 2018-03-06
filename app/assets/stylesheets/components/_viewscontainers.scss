@@ -17,3 +17,12 @@
   text-align: center;
   display: block;
 }
+#sticky {
+    background-color: #E3E3E3;
+}
+#sticky.stick {
+    width: 1140px;
+    position: fixed;
+    top: 0;
+    z-index: 10000;
+}
