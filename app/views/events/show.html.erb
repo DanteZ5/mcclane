@@ -100,8 +100,34 @@
           const status = data.safe;
           const c_row = document.getElementById("colevent_" + c_id);
           const c_bubble = c_row.querySelector("td:nth-child(3) div");
+          const safe = data.safe_percentage;
+          const pending = data.unsafe_percentage;
+          const suspect = data.suspect_percentage;
+
+          const progress_safe = document.querySelector('div.progress-bar.bg-success');
+          const progress_safe_value = document.querySelector('div.progress-bar.bg-success.progress-bar-striped.active p');
+
+          const progress_suspect = document.querySelector("div.progress-bar.bg-suspect");
+          const progress_suspect_value = document.querySelector('div.progress-bar.bg-suspect.progress-bar-striped.active p');
+
+
+          const progress_pending = document.querySelector("div.progress-bar.bg-warning");
+          const progress_pending_value = document.querySelector('div.progress-bar.bg-warning.progress-bar-striped.active p');
+
+
+          progress_safe.style.width = (safe + "%");
+          progress_safe_value.innerHTML = (safe + "%");
+
+          progress_suspect.style.width = (suspect + "%");
+          progress_suspect_value.innerHTML = (suspect + "%");
+
+          progress_pending.style.width = (pending + "%");
+          progress_pending_value.innerHTML = (pending + "%");
+
+
           if (status === "safe") {
             c_bubble.classList.replace("bubble-pending", "bubble-safe" );
+            console.log(data)
           } else if (status === "suspect") {
             c_bubble.classList.replace("bubble-pending", "bubble-suspect" );
           }
