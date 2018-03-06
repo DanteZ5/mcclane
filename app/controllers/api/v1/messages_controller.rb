@@ -41,7 +41,7 @@ class Api::V1::MessagesController < Api::V1::BaseController
       @safe_percentage = 100 - @unsafe_percentage - @suspect_percentage
     end
       ActionCable.server.broadcast("event_#{@message.colevent.event.id}",
-       {colevent_id: @message.colevent_id, safe: @message.colevent.safe, unsafe_percentage: @unsafe_percentage, suspect_percentage: @suspect_percentage, safe_perecentage: @safe_percentage})
+       {colevent_id: @message.colevent_id, safe: @message.colevent.safe, unsafe_percentage: @unsafe_percentage, suspect_percentage: @suspect_percentage, safe_percentage: @safe_percentage})
     # render json: { ok: true }
     head :no_content
   end
