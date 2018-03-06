@@ -6,6 +6,8 @@ class Event < ApplicationRecord
   has_many :messages, through: :colevents
   has_many :collaborators, through: :colevents
 
+  accepts_nested_attributes_for :templates
+
   validates :name, presence: true
 
   def default_values
