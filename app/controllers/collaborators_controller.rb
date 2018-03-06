@@ -1,8 +1,17 @@
 class CollaboratorsController < ApplicationController
-  skip_after_action :verify_authorized, only: :count
-  after_action :verify_policy_scoped, only: :count
+  skip_after_action :verify_authorized, only: [:count, :import]
+  after_action :verify_policy_scoped, only: [:count, :import]
 
   def index
+    @events = policy_scope(Event)
+    ev = Collaborator.arel_table
+    @collaborators = Collaborator.where(ev[:user_id].eq(current_user.id))
+  end
+
+  def import
+    collaborators = policy_scope(Collaborator)
+    Collaborator.import(params[:file], current_user.id)
+    redirect_to collaborators_path, notice: "Activity Data imported!"
   end
 
   def count

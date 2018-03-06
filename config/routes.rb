@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :collaborators, only: [] do
     collection do
       get :count
+      get :index
+      post :import
     end
   end
 
