@@ -11,25 +11,34 @@
      <h1>New alert</h1>
 
 
+
      <%= simple_form_for @event do |f| %>
      <div class="alert-step active">
       <%= f.fields_for :search do |search_form|  %>
-      <div class="form-group">
-        <%= select_tag "continent", options_from_collection_for_select(@continents, :name, :name), class: 'select2-continent form-control', multiple: true, label: "Continent"%>
+      <!-- <div class="form-group">
+        <%#= select_tag "continent", options_from_collection_for_select(@continents, :name, :name), class: 'select2-continent form-control', multiple: true, label: "Continent"%>
       </div>
 
       <div class="form-group">
-        <%= select_tag "country", options_from_collection_for_select(@countries, :name, :name), class: 'select2-country form-control', multiple: true %>
+        <%#= select_tag "country", options_from_collection_for_select(@countries, :name, :name), class: 'select2-country form-control', multiple: true %>
       </div>
 
       <div class="form-group">
-        <%= select_tag "city", options_from_collection_for_select(@cities, :name, :name),
+        <%#= select_tag "city", options_from_collection_for_select(@cities, :name, :name),
         class: 'select2-city form-control', multiple: true %>
+      </div> -->
+
+      <div class="form-group">
+        <%= select_tag "area", options_from_collection_for_select(@continents + @countries + @cities, :name, :name), class: 'select2-area form-control', multiple: true, label: "continent, country, city"%>
       </div>
 
       <!-- Input SMS part of the form -->
 
       <% end  %>
+
+
+
+
       <button class="btn btn-main" id="switcher"> Write your alert</button>
 
       <div class="circle-text">
