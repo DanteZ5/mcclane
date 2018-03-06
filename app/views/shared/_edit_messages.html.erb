@@ -7,9 +7,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="cardmodal-body main-container">
         <%= simple_form_for @event, url: edit_messages_event_path(@event) do |f| %>
-          <%= f.fields_for :templates do |template_form| %>
+          <%= f.fields_for :templates, @event.templates.sort_by(&:order) do |template_form| %>
             <%= template_form.input :content %>
           <% end %>
           <%= f.submit "Set", class: "btn-main", data: { confirm: 'Do you really want to edit this message?' } %>

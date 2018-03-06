@@ -51,7 +51,7 @@ class EventsController < ApplicationController
       message_content = params[:event][:template][:description]
       Template.create(content: message_content, event: @event, slot: 0, order: 0)
       Template.create(content: "IMPORTANT, Answer '1' if you're safe", event: @event, slot: 2, order: 1)
-      Template.create(content: "URGENT / IMPORTANT, Answer '1' if you're safe", event: @event, slot: 5, order: 2)
+      Template.create(content: "URGENT / IMPORTANT, Answer '1' if you're safe", event: @event, slot: 6, order: 2)
 
       # ne target que les collabs selecitonnes
       c = Collaborator.arel_table
