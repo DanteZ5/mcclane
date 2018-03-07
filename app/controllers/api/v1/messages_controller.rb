@@ -24,11 +24,11 @@ class Api::V1::MessagesController < Api::V1::BaseController
         ce = @message.colevent
 
         if @message.content == '1'
-          t = ce.event.templates.where(order: 4).first
+          t = ce.event.templates.where(order: 3).first
           SmsJob.perform_later(t.id, ce.id, query: false)
           ce.update(safe: 'safe', safe_time: Time.now)
         else
-          t = ce.event.templates.where(order: 5).first
+          t = ce.event.templates.where(order: 4).first
           SmsJob.perform_later(t.id, ce.id, query: false)
           ce.update(safe: 'suspect', safe_time: Time.now)
         end
