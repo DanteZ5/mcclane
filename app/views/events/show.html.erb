@@ -2,40 +2,39 @@
 
   <!-- Navigation -->
   <div class="main-container">
-     <div class="nav-show">
-       <ul class="nav nav-pills">
-         <li role="presentation" class="disabled navh"><a href="#">1. Collaborators selection</a></li>
-         <li role="presentation" class="disabled navh"><a href="#">2. SMS creation</a></li>
-         <li role="presentation" class="active navh"><a href="#">3. Dashboard</a></li>
-       </ul>
-     </div>
-   </div>
-
-<div id="sticky-anchor"></div>
-<div id="sticky">
-  <div class="row" style="margin-top: 10px">
-    <div class="col-xs-6">
-      <p><% name = @event.templates[0].content.split(' ')[0..4].join(' ') unless @event.templates[0].nil? %>
-        <%= name || @event.name %>
-      </p>
-    </div>
-    <div class="col-xs-6" style="text-align: right; margin-top: 10px">
-      <% if @event.status == "ongoing" %>
-        <%= link_to 'Close event', close_event_path(@event), method: :patch, class: "btn-main", data: { confirm: 'Do you really want to close this event?' }  %>
-      <% else %>
-        <div style="color: green;">
-          <p>Event closed <i class="far fa-check-circle"></i></p>
+    <div class="row">
+      <div class="col-xs-12">
+          <ul>
+            <li><a href="#" class="inactive"><div class="rail-bubble-disabled">1</div> Collaborators selection</a></li><div class="line-left-inactive"></div>
+            <li><a href="#" class="inactive"><div class="rail-bubble-disabled">2</div> SMS creation</a></li>
+            <div class="line-right-active"></div>
+            <li ><a href="#" class="active"><div class="rail-bubble">3</div> Dashboard</a></li>
+          </ul>
+        <div class="event">
+          <% if @event.status == "ongoing" %>
+          <%= link_to 'Close event', close_event_path(@event), method: :patch, class: "close-event", data: { confirm: 'Do you really want to close this event?' }  %>
+          <% else %>
+          <div class="event-closed">
+            <p>Event closed <i class="far fa-check-circle"></i></p>
+          </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
-  <br>
 
-  <!-- Progress bar -->
-  <%= render 'progress_bar' %>
-  <!-- Search bar -->
+  <div id="sticky-anchor"></div>
+  <div id="sticky">
+    <div class="row" style="margin-top: 10px">
+      <div class="col-xs-12 title-event">
+        <p>EVENT NAME</p>
+      </div>
+    </div>
+    <!-- Progress bar -->
+    <%= render 'progress_bar' %>
+    <!-- Search bar -->
     <div class="form-group pull-left">
-      <input type="text" class="search form-control" placeholder="Filter">
+      <input type="text" class="search form-control filter" placeholder="Filter">
     </div>
     <span class="counter pull-left"></span>
     <!-- Edit messages -->
@@ -45,9 +44,6 @@
       Edit messages</button>
     </div>
   </div>
-
-
-
   <!-- Collaborators table with inline status -->
   <div class="table-space">
     <table class="table table-dark table-hover results table-responsive">
@@ -64,25 +60,24 @@
         </tr>
       </thead>
       <tbody>
-
-       <!-- Each employee -->
-
-      <% @colevents.each do |c| %>
-      <!-- Collaborator statuts-name modal call -->
-      <%= render partial: "shared/collaborator_view_message",
-      locals: {collaborator: c.collaborator, colevent: c, message: c.messages.last} %>
-      <%= render partial: "shared/collaborator_status_change",
-      locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
-      <%= render partial: "shared/send_specific_sms",
-      locals: {collaborator: c.collaborator, colevent: c, message: Message.new} %>
-      <!-- End of collaborator statuts-name modal call -->
-      <%= render "events/employee_row", colevent: c %>
-        <% end %>
-      <!-- End employee -->
-      </tbody>
-    </table>
+      <!-- Each employee -->
+       <% @colevents.each do |c| %>
+       <!-- Collaborator statuts-name modal call -->
+       <%= render partial: "shared/collaborator_view_message",
+       locals: {collaborator: c.collaborator, colevent: c, message: c.messages.last} %>
+       <%= render partial: "shared/collaborator_status_change",
+       locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
+       <%= render partial: "shared/send_specific_sms",
+       locals: {collaborator: c.collaborator, colevent: c, message: Message.new} %>
+       <!-- End of collaborator statuts-name modal call -->
+       <%= render "events/employee_row", colevent: c %>
+       <% end %>
+       <!-- End employee -->
+     </tbody>
+   </table>
   </div>
-</div>
+  </div>
+
 <!-- Action Cable -->
 <% content_for :after_js do %>
   <script>

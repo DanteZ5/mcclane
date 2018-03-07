@@ -1,21 +1,66 @@
-.nav-container {
-  display: block;
-  max-width: 600px;
-  margin: 20px auto;
+.rail-bubble {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: 2px solid black;
+  margin: auto;
 }
-.nav-show {
-  display: block;
-  background: white;
-  padding: 4px;
-  margin: 0px auto;
-  border-radius: 4px;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+.rail-bubble-disabled {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: 2px solid #777777;
+  margin: auto;
 }
-a .nav-link disabled {
-  color: yellow;
+ul {
+  display: flex;
+  justify-content: space-between;
+  position: relative
 }
-
-.nav a:hover {
+li {
+  display: inline-block;
+}
+.inactive {
+  color: #777777;
+}
+.inactive:hover {
+  cursor: default !important;
+  text-decoration: none;
+  color: #777777;
+}
+.active:hover {
+  cursor: default !important;
   text-decoration: none;
 }
-
+.line-left-active{
+  width: 206px;
+  height: 47px;
+  border-bottom: 5px solid black;
+  position: absolute;
+  top: -30px;
+  right: 244px;
+}
+.line-left-inactive{
+  width: 206px;
+  height: 47px;
+  border-bottom: 5px solid #777777;
+  position: absolute;
+  top: -30px;
+  right: 244px;
+}
+.line-right-active{
+  width: 155px;
+  height: 47px;
+  border-bottom: 5px solid black;
+  position: absolute;
+  top: -30px;
+  right: 61px
+}
+.line-right-inactive{
+  width: 155px;
+  height: 47px;
+  border-bottom: 5px solid #777777;
+  position: absolute;
+  top: -30px;
+  right: 61px
+}

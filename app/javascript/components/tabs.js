@@ -4,7 +4,7 @@ function switcher() {
   switcher.addEventListener("click", (event) => {
 
     const box = document.querySelectorAll(".alert-step");
-    const nav = document.querySelectorAll(".navh");
+    const nav = document.querySelectorAll(".actif");
 
     event.preventDefault();
 
