@@ -1,0 +1,19 @@
+<tr id="<%= 'colevent_' + colevent.id.to_s %>">
+    <td class="center-headers"><%= colevent.collaborator.last_name %></td>
+    <td class="center-headers"><%= colevent.collaborator.first_name %></td>
+    <% if colevent.safe == 'safe' %>
+      <td><div class="bubble-safe"></div></td>
+    <% elsif colevent.safe == 'suspect' %>
+      <td><div class="bubble-suspect"></td>
+    <% else %>
+      <td><div class="bubble-pending"></td>
+    <% end %>
+    <td class="center-headers"><%= colevent.collaborator.continent %>, <%= colevent.collaborator.country %>, <%= colevent.collaborator.city %></td>
+
+    <td colspan="2" class="actions-icons">
+
+      <button style="background-color: transparent; border-color: transparent;" type="button" class="fas fa-eye" data-toggle="modal" data-target="#exampleModalContent<%= colevent.collaborator.id  %>"></button>
+      <button style="background-color: transparent; border-color: transparent;" type="button" class="fas fa-exchange-alt white" data-toggle="modal" data-target="#exampleModalCenter<%= colevent.collaborator.id  %>"></button>
+      <button style="background-color: transparent; border-color: transparent;" type="button" class="fas fa-envelope" data-toggle="modal" data-target="#exampleModalSMS<%= colevent.collaborator.id  %>"></button>
+    </td>
+  </tr>

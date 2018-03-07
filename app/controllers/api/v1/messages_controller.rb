@@ -40,8 +40,17 @@ class Api::V1::MessagesController < Api::V1::BaseController
           @safe_percentage = (safe * 100) / total_collaborators
           @unsafe_percentage = 100 - @safe_percentage - @suspect_percentage
         end
-          ActionCable.server.broadcast("event_#{@message.colevent.event.id}",
-           {colevent_id: @message.colevent_id, safe: @message.colevent.safe, unsafe_percentage: @unsafe_percentage, suspect_percentage: @suspect_percentage, safe_percentage: @safe_percentage})
+          ActionCable.server.broadcast("event_#{@message.colevent.event.id}", {
+            colevent_id: @message.colevent_id,
+            safe: @message.colevent.safe,
+            unsafe_percentage: @unsafe_percentage,
+            suspect_percentage: @suspect_percentage,
+            safe_percentage: @safe_percentage,
+            employee_row_partial: ApplicationController.renderer.render(
+              partial: "events/employee_row",
+              locals: { colevent: ce }
+            )
+          })
         # render json: { ok: true }
         end
     end
