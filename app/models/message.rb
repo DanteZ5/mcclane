@@ -6,9 +6,18 @@ class Message < ApplicationRecord
    validates :phone_number, presence: true
 
 
-  # def send_sms
-  #   SmsJob.perform_later(self.id)
-  # end
+  def send_sms
+    message = self
+    account_sid = ENV["account_sid"] # Your Account SID from www.twilio.com/console
+    auth_token = ENV["auth_token"]   # Your Auth Token from www.twilio.com/console
+    @client = Twilio::REST::Client.new account_sid, auth_token
+    body = message.content
+    to = message.phone_number
+    @client.messages.create(
+      body: body,
+      to: to,
+      from: "+33644603214")
+  end
 
   # def scheduled_sms(timer)
   #   SmsJob.set(wait: timer.minutes).perform_later(self.id)
