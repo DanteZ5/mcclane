@@ -56,19 +56,22 @@
         </div>
       </div>
     <div class="col-xs-12 col-sm-6">
-        <div class="card-show" style="padding: 25px;">
-        <%#= image_tag "phone.png", class: "phone" %>
-      <div class="mess">
-        <div class="he"><span class="left">Messages</span>
-          <span class="name">McClane</span><span class="right">Contact</span>
+      <div class="card-show">
+        <div class="phone-background">
+          <div class="line"></div>
+          <div class="mess">
+          <div class="he">
+            <span class="name">McClane</span>
+          </div>
+          <div class="messages-wrapper">
+            <br>
+            <div class="message to" style="text-align: right;"><%= current_user.company %> Safety System: [AN EVENT OCCURED], please answer '1' if you're safe</div>
+            <br>
+          </div>
+          </div>
+          <div class="home-button"></div>
         </div>
-        <div class="messages-wrapper">
-          <br>
-          <div class="message to" style="text-align: right;"><%= current_user.company %> Safety System: [AN EVENT OCCURED], please answer '1' if you're safe</div>
-          <br><br><br><br><br><br><br><br><br><br><br>
-          <br>
-        </div>
-      </div>
+
       </div>
       </div>
     </div>
