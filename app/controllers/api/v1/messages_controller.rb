@@ -22,10 +22,15 @@ class Api::V1::MessagesController < Api::V1::BaseController
       # on veut passer colevent concerne en 'safe' des qu'on reçoit le message
       unless @message.content.nil?
         ce = @message.colevent
+
         if @message.content == '1'
           ce.update(safe: 'safe', safe_time: Time.now)
+          t = ce.event.templates.where(order: 4).first
+          SmsJob.perform_later(t.id, ce.id)
         else
           ce.update(safe: 'suspect', safe_time: Time.now)
+          t = ce.event.templates.where(order: 5).first
+          SmsJob.perform_later(t.id, ce.id)
         end
         event = @message.colevent.event
         unsafe = event.colevents.where(safe: 'pending').count

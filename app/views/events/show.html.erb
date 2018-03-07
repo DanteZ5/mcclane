@@ -70,7 +70,7 @@
       <% @colevents.each do |c| %>
       <!-- Collaborator statuts-name modal call -->
       <%= render partial: "shared/collaborator_view_message",
-      locals: {collaborator: c.collaborator, colevent: c, message: c.messages.last} %>
+      locals: {collaborator: c.collaborator, colevent: c, message: c.messages.where(destination: "inbound").last} %>
       <%= render partial: "shared/collaborator_status_change",
       locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
       <%= render partial: "shared/send_specific_sms",
