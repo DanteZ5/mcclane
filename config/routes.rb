@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
       resources :templates, only: [] do
         member do
-          get :voice
+          post :voice
         end
       end
     end
