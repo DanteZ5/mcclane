@@ -93,6 +93,9 @@ class EventsController < ApplicationController
     safe = @event.colevents.where(safe: 'safe').count
     suspect = @event.colevents.where(safe: 'suspect').count
     total_collaborators = @event.collaborators.count
+
+    @template_labels = ["First message sent", "Phone call after 1 min", "SMS sent after 3 min", "Answer if safe", "Answer if suspect"]
+
     if total_collaborators == 0
       redirect_to new_event_path
     else
@@ -128,6 +131,7 @@ class EventsController < ApplicationController
     @event.templates.each_with_index do |t, i|
       t.update(content: params[:event][:templates_attributes]["#{i}"]["content"])
     end
+
     redirect_to event_path(@event)
   end
 
