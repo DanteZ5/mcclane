@@ -54,7 +54,7 @@ class EventsController < ApplicationController
       Template.create(content: "IMPORTANT, Answer '1' if you're safe", event: @event, slot: 3, order: 2)
       # answers
       Template.create(content: "Thank you, we're glad to know you're safe", event: @event, slot: 0, order: 3)
-      Template.create(content: "We just received your message. If you're safe, send 1, else give a call to 911", event: @event, slot: 0, order: 4)
+      Template.create(content: "We just received your message. If you're safe, send 1. If you have any trouble : call 911 then we contact you as soon as possible", event: @event, slot: 0, order: 4)
 
       # ne target que les collabs selectionnes
       areas = params[:area]
