@@ -16,10 +16,17 @@
     color: #FFFFFF;
     font-family: "Open Sans";
     line-height: 26px;
-    width: 400px;
+    width: 350px;
     overflow-X: hidden;
-    position: relative;
+    position: absolute;
 }
+.phone {
+margin: auto;
+height: 70vh;
+position: relative;
+
+}
+
 .left {
   position: absolute;
   top: 0;
@@ -105,3 +112,5 @@
     left: -50px;
     transform: rotateY(180deg);
 }
+
+

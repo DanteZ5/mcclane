@@ -6,10 +6,12 @@
 }
 .card-show {
   background: white;
-  padding: 10px;
+  padding: 25px;
   margin-bottom: 5px;
   border-radius: 4px;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  height: 75vh;
+  position: relative;
 }
 .input-login {
   margin: 0px auto;
@@ -29,4 +31,31 @@
 
 .modal-backdrop {
   position: unset;
+}
+
+.targeter {
+  width: 90%;
+  position: absolute;
+  top: 240px;
+  right: 30px;
+
+}
+.btn-absolute {
+  position: absolute;
+  bottom: 45px;
+  right: 30px;
+}
+
+.man {
+// font-size: 26px !important;
+margin: auto;
+// margin-top: 80px !important;
+padding: 10px 10px;
+}
+
+#men {
+font-size: 8 px !important;
+margin: auto;
+margin-top: 80px !important;
+padding: 20px;
 }
