@@ -2,10 +2,10 @@ class SmsJob < ApplicationJob
   queue_as :default
 
   # def perform(message_id)
-  def perform(template_id, colevent_id)
+  def perform(template_id, colevent_id, query: true)
     t = Template.find(template_id)
     c = Colevent.find(colevent_id)
-    return unless c.safe == 'pending' # casse l'execution de la suite
+    return if query && c.safe != 'pending' # casse l'execution de la suite
 
     # cree l'instance message
     message = Message.create(content: t.content, destination: "outbound", phone_number: c.collaborator.phone_pro, colevent_id: c.id)
