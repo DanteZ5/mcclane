@@ -2,23 +2,35 @@ class SmsJob < ApplicationJob
   queue_as :default
 
   # def perform(message_id)
-  def perform(template_id, colevent_id)
+  def perform(template_id, colevent_id, query: true)
     t = Template.find(template_id)
     c = Colevent.find(colevent_id)
-    return unless c.safe == 'pending' # casse l'execution de la suite
+    return if query && c.safe != 'pending' # casse l'execution de la suite
 
-    # cree l'instance message
-    message = Message.create(content: t.content, destination: "outbound", phone_number: c.collaborator.phone_pro, colevent_id: c.id)
-    # message = Message.find(message_id)
-    account_sid = ENV["account_sid"] # Your Account SID from www.twilio.com/console
-    auth_token = ENV["auth_token"]   # Your Auth Token from www.twilio.com/console
+    account_sid = ENV["account_sid"]
+    auth_token = ENV["auth_token"]
     @client = Twilio::REST::Client.new account_sid, auth_token
-    body = message.content
+    message = Message.create(content: t.content, destination: "outbound", phone_number: c.collaborator.phone_pro, colevent_id: c.id)
     to = message.phone_number
-    @client.messages.create(
-      body: body,
-      to: to,
-      from: "+33644603214")
-      # from: message.colevent.event.user.company)
+
+
+    if t.order == 1
+      # call
+      url = "https://www.mcclane.tech/api/v1/templates/#{t.id}/voice.xml"
+      @client.calls.create(
+        url: url,
+        to: to,
+        from: '+33644603214'
+      )
+    else
+      # SMS
+      body = message.content
+      @client.messages.create(
+        body: body,
+        to: to,
+        from: "+33644603214")
+    end
+
   end
 end
+

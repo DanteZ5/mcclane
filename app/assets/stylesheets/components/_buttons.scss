@@ -1,8 +1,7 @@
 .btn-main {
   color: white;
-  border: 1px solid black;
   padding: 10px 40px;
-  border-radius: 5px;
+  border-radius: 100px;
   opacity: 0.9;
   background-color: black;
 }
@@ -10,13 +9,12 @@
   opacity: 1;
   text-decoration: none;
   color: white;
-  border: 1px solid black;
 }
 .btn-edit {
   color: white;
   border: 1px solid #FE5F55;
   padding: 10px 10px;
-  border-radius: 5px;
+  border-radius: 100px;
   background-color: #FE5F55;
   margin-bottom: 10px;
 }
@@ -24,14 +22,13 @@
   opacity: 1;
   text-decoration: none;
   color: white;
-  border: 1px solid red;
   background: darken(#FE5F55, 10%);
 }
 .btn-safe {
   color: white;
   border: 1px solid #2EB872;
   padding: 10px 10px;
-  border-radius: 5px;
+  border-radius: 100px;
   opacity: 0.8;
   background-color: #2EB872;
   margin-bottom: 10px;
@@ -41,15 +38,15 @@
   opacity: 1;
   text-decoration: none;
   color: white;
-  border: 1px solid #2EB872;
   background-color: #2EB872;
+  text-decoration: none;
 }
 
 .btn-pending {
   color: white;
   border: 1px solid orange;
   padding: 10px 10px;
-  border-radius: 5px;
+  border-radius: 100px;
   opacity: 0.8;
   background-color: orange;
   margin-bottom: 10px;
@@ -61,12 +58,13 @@
   color: white;
   border: 1px solid orange;
   background-color: orange;
+  text-decoration: none;
 }
 .btn-suspect {
   color: white;
   border: 1px solid #3176A9;
   padding: 10px 10px;
-  border-radius: 5px;
+  border-radius: 100px;
   opacity: 0.8;
   background-color: #3176A9;
   margin-bottom: 10px;
@@ -76,6 +74,6 @@
   opacity: 1;
   text-decoration: none;
   color: white;
-  border: 1px solid #3176A9;
   background-color: #3176A9;
+  text-decoration: none;
 }

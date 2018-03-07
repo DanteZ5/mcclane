@@ -44,6 +44,12 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       post "/listen", to: "/api/v1/messages#listen"
+
+      resources :templates, only: [] do
+        member do
+          post :voice
+        end
+      end
     end
   end
 end

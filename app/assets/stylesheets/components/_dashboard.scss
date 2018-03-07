@@ -1,0 +1,48 @@
+.railroad {
+  position: relative;
+}
+.event {
+  position: absolute;
+  text-align: right;
+  margin-top: 10px;
+  top: 5px;
+  right: -253px;
+}
+.close-event {
+  color: red;
+  opacity: 0.6;
+}
+.close-event:hover  {
+  color: red;
+  text-decoration: none;
+  opacity: 1;
+}
+.event-closed {
+  color: green;
+}
+.title-event {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px 0px 10px 0px;
+}
+.filter {
+  box-shadow: none;
+  border: none;
+}
+#sticky {
+  background-color: #E3E3E3;
+}
+#sticky.stick {
+  width: 89vw;
+  position: fixed;
+  top: 0;
+  z-index: 7;
+}
+.progress-bar-custom {
+  height: 40px;
+  border-radius: 1px;
+  position: relative;
+}
+.progress-text {
+  position: absolute;
+}
