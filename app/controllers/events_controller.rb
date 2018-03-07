@@ -50,8 +50,11 @@ class EventsController < ApplicationController
       # Si save, cree plusieurs instances template
       message_content = params[:event][:template][:description]
       Template.create(content: message_content, event: @event, slot: 0, order: 0)
-      Template.create(content: "IMPORTANT, Answer '1' if you're safe", event: @event, slot: 2, order: 1)
-      Template.create(content: "URGENT / IMPORTANT, Answer '1' if you're safe", event: @event, slot: 6, order: 2)
+      Template.create(content: "You've received a text message about a situation, please answer to the message", event: @event, slot: 1, order: 1)
+      Template.create(content: "IMPORTANT, Answer '1' if you're safe", event: @event, slot: 3, order: 2)
+      # answers
+      Template.create(content: "Thank you, we're glad to know you're safe", event: @event, slot: 0, order: 3)
+      Template.create(content: "We just received your message. If you're safe, send 1, else give a call to 911", event: @event, slot: 0, order: 4)
 
       # ne target que les collabs selectionnes
       areas = params[:area]
@@ -59,21 +62,20 @@ class EventsController < ApplicationController
       conditions = "continent IN (:areas) OR country IN (:areas) OR city IN (:areas)"
       collaborators = collaborators.where(conditions, areas: areas)
 
-
       # on itere sur collab, on cree les instances messages, on planifie les jobs
       collaborators.each do |collaborator|
         # cree plusieurs instances Colevent
         colevent = Colevent.create(collaborator: collaborator, event: @event, safe: "pending")
         # cree plusieurs instances messages (pour chaque colevent)
         @event.templates.each do |t|
-          SmsJob.set(wait: t.slot.minutes).perform_later(t.id, colevent.id) unless collaborator.phone_pro == 'stop'
+          unless (collaborator.phone_pro == 'stop' || t.order > 2)
+            SmsJob.set(wait: t.slot.minutes).perform_later(t.id, colevent.id)
+          end
         end
       end
 
       # on renvoie vers le monitoring
-
       redirect_to event_path(@event)
-
     else
       render :new
     end
@@ -104,10 +106,15 @@ class EventsController < ApplicationController
     @event.status = "over"
   end
 
+  # a quoi sert cette feature ?
   def specific_sms
   message_content = params[:event][:template][:description]
-  @message = Message.create(content: message_content, colevent: c, phone_number: c.collaborator.phone_pro, destination: 'outbound')
-  @message.send_sms unless message[:phone_number] == 'stop' # n'envoie pas a la seed
+  @message = Message.create(content: message_content,
+                            colevent: c,
+                            phone_number: c.collaborator.phone_pro,
+                            destination: 'outbound')
+  @message.send_sms unless message[:phone_number] == 'stop'
+  # n'envoie pas a la seed
   end
 
   def close

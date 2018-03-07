@@ -1,4 +1,5 @@
 class Api::V1::MessagesController < Api::V1::BaseController
+  # FIXME: faille secu
 
   def listen
     # authorize @message
@@ -22,9 +23,14 @@ class Api::V1::MessagesController < Api::V1::BaseController
       # on veut passer colevent concerne en 'safe' des qu'on reçoit le message
       unless @message.content.nil?
         ce = @message.colevent
+
         if @message.content == '1'
+          t = ce.event.templates.where(order: 3).first
+          SmsJob.perform_later(t.id, ce.id, query: false)
           ce.update(safe: 'safe', safe_time: Time.now)
         else
+          t = ce.event.templates.where(order: 4).first
+          SmsJob.perform_later(t.id, ce.id, query: false)
           ce.update(safe: 'suspect', safe_time: Time.now)
         end
         event = @message.colevent.event
