@@ -10,7 +10,7 @@
       <div class="modal-body" style="text-align: center;">
         <%= simple_form_for @event, url: edit_messages_event_path(@event) do |f| %>
           <%= f.fields_for :templates, @event.templates.sort_by(&:order) do |template_form| %>
-            <%= template_form.input :content, as: :text %>
+            <%= template_form.input :content, as: :text, label: @template_labels[template_form.object.order] %>
           <% end %>
       </div>
       <div class="modal-footer">
