@@ -1,63 +1,63 @@
 <div class="container">
-
   <!-- Navigation -->
   <%= render 'nav_events' %>
 
+  <div class="alert-step active">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="card-show">
+          <h1 style="text-align: center;">Create a new alert</h1>
 
-  <!-- Form with tags input-->
-  <div class="main-container">
-    <div class="card-show" style="padding: 60px;">
+          <div class="targeter">
+            <p>To sens a new SMS alert to your collaborators, select them with the tags below</p>
 
-     <h1>New alert</h1>
+            <%= simple_form_for @event do |f| %>
+            <%= f.fields_for :search do |search_form|  %>
 
+            <div class="form-group">
+              <%= select_tag "area", options_from_collection_for_select(@continents + @countries + @cities, :name, :name), class: 'select2-area form-control tgt', multiple: true, label: "continent, country, city"%>
+            </div>
+          </div>
+          <!-- Input SMS part of the form -->
 
+          <% end  %>
 
-     <%= simple_form_for @event do |f| %>
-     <div class="alert-step active">
-      <%= f.fields_for :search do |search_form|  %>
-      <!-- <div class="form-group">
-        <%#= select_tag "continent", options_from_collection_for_select(@continents, :name, :name), class: 'select2-continent form-control', multiple: true, label: "Continent"%>
+          <button class="btn btn-main btn-absolute" id="switcher"> Write your alert</button>
+        </div>
       </div>
 
-      <div class="form-group">
-        <%#= select_tag "country", options_from_collection_for_select(@countries, :name, :name), class: 'select2-country form-control', multiple: true %>
-      </div>
-
-      <div class="form-group">
-        <%#= select_tag "city", options_from_collection_for_select(@cities, :name, :name),
-        class: 'select2-city form-control', multiple: true %>
-      </div> -->
-
-      <div class="form-group">
-        <%= select_tag "area", options_from_collection_for_select(@continents + @countries + @cities, :name, :name), class: 'select2-area form-control', multiple: true, label: "continent, country, city"%>
-      </div>
-
-      <!-- Input SMS part of the form -->
-
-      <% end  %>
-
-
-
-
-      <button class="btn btn-main" id="switcher"> Write your alert</button>
-
-      <div class="circle-text">
-        <div>
-          <span id="collaborators-count"><%= current_user.collaborators.count  %></span> Collaborators
+      <div class="col-xs-12 col-sm-6">
+        <div class="card-show" style="padding: 25px;">
+          <h1 style="text-align: center;">Send to: <span id="collaborators-count"><%= current_user.collaborators.count  %></span>  collaborators</h1>
+          <div id="men">
+            <% current_user.collaborators.count.times do %>
+            <i class='fas fa-user'></i>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
     <div class="alert-step">
-      <%= f.fields_for :template do |template_form| %>
-      <%= template_form.input :description, as: :text,
-      input_html: { value:"#{current_user.company} Safety System: [AN EVENT OCCURED], please answer '1' if you're safe" } %>
-      <% end %>
+      <div class="col-xs-12 col-sm-6">
+        <div class="card-show" style="padding: 25px;">
+          <h1>Write your alert message</h1>
+              <p>Be explicit and remain under 160 characters</p>
+              <%= f.fields_for :template do |template_form| %>
+              <%= template_form.input :description, as: :text, label: false,
+              input_html: { value:"An [EVENT PLEASE COMPLETE] occured, please answer '1' if you're safe" } %>
+              <% end %>
 
-      <div class="form-actions">
-        <%= f.submit "Send", class: "btn-main", data: { confirm: 'Do you really want to send this message?' } %>
-        <% end %>
+              <div class="form-actions">
+                <%= f.submit "Send", class: "btn-main btn-absolute", data: { confirm: 'Do you really want to send this message?' } %>
+                <% end %>
+            </div>
+        </div>
       </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="card-show" style="padding: 25px;">
+        <%#= image_tag "phone.png", class: "phone" %>
       <div class="mess">
         <div class="he"><span class="left">Messages</span>
           <span class="name">McClane</span><span class="right">Contact</span>
@@ -68,6 +68,8 @@
           <br><br><br><br><br><br><br><br><br><br><br>
           <br>
         </div>
+      </div>
+      </div>
       </div>
     </div>
   </div>

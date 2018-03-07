@@ -62,6 +62,7 @@ $(".select2-area").on("change", function() {
   .then((data) => {
     const collaboratorsCount = data.count;
     document.getElementById("collaborators-count").innerText = collaboratorsCount;
+    const menDiv = document.getElementById("men").innerHTML = "<i class='fas fa-user man'></i>".repeat(collaboratorsCount)
   });
 });
 
