@@ -50,8 +50,8 @@ class EventsController < ApplicationController
       # Si save, cree plusieurs instances template
       message_content = params[:event][:template][:description]
       Template.create(content: message_content, event: @event, slot: 0, order: 0)
-      Template.create(content: "IMPORTANT, Answer '1' if you're safe", event: @event, slot: 2, order: 1)
-      Template.create(content: "URGENT / IMPORTANT, Answer '1' if you're safe", event: @event, slot: 6, order: 2)
+      Template.create(content: "You've received a text message about a situation, please answer to the message", event: @event, slot: 1, order: 1)
+      Template.create(content: "IMPORTANT, Answer '1' if you're safe", event: @event, slot: 3, order: 2)
       # answers
       Template.create(content: "Thank you, we're glad to know you're safe", event: @event, slot: 0, order: 3)
       Template.create(content: "We just received your message. If you're safe, send 1, else give a call to 911", event: @event, slot: 0, order: 4)

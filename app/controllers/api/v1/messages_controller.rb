@@ -1,4 +1,5 @@
 class Api::V1::MessagesController < Api::V1::BaseController
+  # FIXME: faille secu
 
   def listen
     # authorize @message
