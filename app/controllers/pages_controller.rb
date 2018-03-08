@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home]
+  skip_before_action :authenticate_user! # , only: [:home, :subscription]
 
   def home
   end
@@ -14,5 +14,29 @@ class PagesController < ApplicationController
     end
   end
 
+  def subscription
+    @collaborator = Collaborator.new
 
+  end
+
+  def create
+    collaborator = Collaborator.new(collab_params)
+    user = User.where(email: "demo@lewagon.org").first
+    collaborator.email = "#{collaborator.first_name}@lewagon.org"
+    collaborator.user_id = user.id
+    collaborator.country = "France"
+    collaborator.city = "Paris"
+    collaborator.save
+    redirect_to thanks_path
+  end
+
+  def thanks
+  end
+
+  private
+
+  def collab_params
+    #white list
+    params.require(:collaborator).permit(:first_name, :last_name, :phone_pro)
+  end
 end

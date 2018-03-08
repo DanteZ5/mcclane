@@ -39,6 +39,10 @@ Rails.application.routes.draw do
 
   get 'messages/create'
 
+  get '/subscription', to: 'pages#subscription'
+  get '/thanks', to: 'pages#thanks'
+  post '/subscription', to: 'pages#create'
+
 
 
   namespace :api, defaults: { format: :json } do
