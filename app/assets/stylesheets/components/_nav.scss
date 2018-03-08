@@ -1,23 +1,67 @@
-.rail-bubble {
+.vertical-alignment {
+  margin: 20px 0px 50px 0px;
+}
+.rail-bubble-active-1 {
   width: 30px;
   height: 30px;
   border-radius: 100px;
   border: 2px solid black;
   margin: auto;
+  position: absolute;
+  right: 488px;
 }
-.rail-bubble-disabled {
+.rail-bubble-active-2 {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: 2px solid black;
+  margin: auto;
+  position: absolute;
+  right: 288px;
+}
+.rail-bubble-active-3 {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: 2px solid black;
+  margin: auto;
+  position: absolute;
+  right: 89px;
+}
+.rail-bubble-disabled-1 {
   width: 30px;
   height: 30px;
   border-radius: 100px;
   border: 2px solid #777777;
   margin: auto;
+  position: absolute;
+  right: 488px;
 }
-ul {
+.rail-bubble-disabled-2 {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: 2px solid #777777;
+  margin: auto;
+  position: absolute;
+  right: 288px;
+}
+.rail-bubble-disabled-3 {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: 2px solid #777777;
+  margin: auto;
+  position: absolute;
+  right: 89px;
+}
+#ul-flex {
   display: flex;
   justify-content: space-between;
-  position: relative
+  position: relative;
+  padding: 0;
 }
-li {
+#li-inline {
   display: inline-block;
 }
 .inactive {
@@ -33,34 +77,48 @@ li {
   text-decoration: none;
 }
 .line-left-active{
-  width: 206px;
+  width: 172px;
   height: 47px;
   border-bottom: 5px solid black;
   position: absolute;
   top: -30px;
-  right: 244px;
+  right: 317px;
 }
 .line-left-inactive{
-  width: 206px;
+  width: 172px;
   height: 47px;
   border-bottom: 5px solid #777777;
   position: absolute;
   top: -30px;
-  right: 244px;
+  right: 317px;
 }
 .line-right-active{
-  width: 155px;
+  width: 172px;
   height: 47px;
   border-bottom: 5px solid black;
   position: absolute;
   top: -30px;
-  right: 61px
+  right: 117px
 }
 .line-right-inactive{
-  width: 155px;
+  width: 172px;
   height: 47px;
   border-bottom: 5px solid #777777;
   position: absolute;
   top: -30px;
-  right: 61px
+  right: 117px;
+}
+.one {
+  position: absolute;
+  bottom: -66px;
+}
+.two {
+  position: absolute;
+  bottom: -66px;
+  left: 244px;
+}
+.three {
+  position: absolute;
+  bottom: -66px;
+  left: 451px;
 }
