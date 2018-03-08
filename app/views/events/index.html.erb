@@ -9,11 +9,10 @@
       <% @events.each do |event| %>
       <div class="archive">
         <div class="archive-body">
-          <% name = event.templates[0].content.split(' ')[0..4].join(' ') unless event.templates[0].nil? %>
+          <% # name = event.templates[0].content.split(' ')[0..4].join(' ') unless event.templates[0].nil? %>
           <% clock = (event.created_at + 3600).strftime("%e %B %Y %H:%M:%S") %>
           <% safe_perc = event.colevents.where(safe: "safe").count * 100 / event.colevents.count unless event.colevents.count == 0%>
-          <p><strong><%= name || event.name %></strong></p>
-          <p><%= clock %></p>
+          <p><strong><%= clock %></strong></p>
           <p>Alert status:
             <% if event.status == "ongoing" %>
               <span style= "color: #E67E22;">on-going</span>
