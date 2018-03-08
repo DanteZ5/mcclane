@@ -15,28 +15,9 @@ class CollaboratorsController < ApplicationController
   end
 
   def count
-    # continents = params[:continents]
-    # countries = params[:countries]
-    # cities = params[:cities]
     areas = params[:areas]
-    # filters = {}
 
-    # filters[:continent] = continents if continents.present?
-    # filters[:country] = countries if countries.present?
-    # filters[:city] = cities if cities.present?
-
-    # filters
-    # => {
-    #   continent: ["France", "Afrique"],
-    #   country: ["Maroc"],
-    #   city: ["Tokyo"]
-    # }
     collaborators = policy_scope(Collaborator)
-    # # => collaborators = Collaborator.where(user_id: current_user.id)
-    # conditions = filters.map { |filter_name, values| "#{filter_name} IN (?)" }.join(" OR ")
-    # # conditions
-    # # => "continent IN ? OR country IN ? OR city in ?"
-    # collaborators_count = collaborators.where(conditions, *filters.values).count
     conditions = "continent IN (:areas) OR country IN (:areas) OR city IN (:areas)"
     collaborators_count = collaborators.where(conditions, areas: areas).count
 
@@ -44,7 +25,33 @@ class CollaboratorsController < ApplicationController
   end
 
   def show
-    # @collaborator = Collaborator.find(params[:id])
+    @collaborator = Collaborator.find(params[:id])
+  end
+
+  def edit
+    @collaborator = Collaborator.find(params[:id])
+    authorize @collaborator
+  end
+
+  def update
+    @collaborator = Collaborator.find(params[:id])
+    authorize @collaborator
+    @collaborator.update(collaborator_params)
+    redirect_to collaborators_path
+  end
+
+  def destroy
+     @collaborator = Collaborator.find(params[:id])
+     authorize @collaborator
+     @collaborator.destroy
+     redirect_to collaborators_path
+  end
+
+  private
+
+  def collaborator_params
+    authorize @collaborator
+    params.require(:collaborator).permit(:email, :phone_pro, :first_name, :last_name, :continent, :country, :city)
   end
 
 end
