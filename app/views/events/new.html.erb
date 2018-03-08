@@ -46,7 +46,7 @@
               <p style="margin-top: 100px;">Be explicit and remain under 160 characters</p>
               <%= f.fields_for :template do |template_form| %>
               <%= template_form.input :description, as: :text, label: false,
-              input_html: { value:"An [EVENT PLEASE COMPLETE] occured, please answer '1' if you're safe" } %>
+              input_html: { value:"#{current_user.company} - ALERT : An [EVENT] occured, please send '1' if you're safe" } %>
               <% end %>
 
               <div class="form-actions">
@@ -65,7 +65,7 @@
           </div>
           <div class="messages-wrapper">
             <br>
-            <div class="message to" style="text-align: right;"><%= current_user.company %> Safety System: [AN EVENT OCCURED], please answer '1' if you're safe</div>
+            <div class="message to" style="text-align: right;"><%= current_user.company %> - ALERT : An [EVENT] occured, please send '1' if you're safe</div>
             <br>
           </div>
           </div>
