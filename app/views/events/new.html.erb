@@ -8,16 +8,16 @@
         <div class="card-show">
           <h1 style="text-align: center;">Create a new alert</h1>
 
-          <div class="targeter">
+          <div class="targeter" style="display: block;">
             <p>To sens a new SMS alert to your collaborators, select them with the tags below</p>
 
             <%= simple_form_for @event do |f| %>
             <%= f.fields_for :search do |search_form|  %>
 
             <div class="form-group">
-              <%= select_tag "area", options_from_collection_for_select(@continents + @countries + @cities, :name, :name), class: 'select2-area form-control tgt', multiple: true, label: "continent, country, city"%>
-            </div>
           </div>
+              <%= select_tag "area", options_from_collection_for_select(@continents + @countries + @cities, :name, :name), class: 'select2-area form-control', multiple: true, label: "continent, country, city"%>
+            </div>
           <!-- Input SMS part of the form -->
 
           <% end  %>

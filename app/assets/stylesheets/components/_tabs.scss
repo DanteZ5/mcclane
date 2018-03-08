@@ -141,3 +141,8 @@ position: relative;
     bottom: 12px;
     left: 44%;
 }
+
+.select2-results__options {
+    display: flex !important;
+    flex-direction: column !important;
+}
