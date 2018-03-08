@@ -41,14 +41,13 @@
   background-color: #2EB872;
   text-decoration: none;
 }
-
 .btn-pending {
   color: white;
-  border: 1px solid orange;
+  border: 1px solid gray;
   padding: 10px 10px;
   border-radius: 100px;
   opacity: 0.8;
-  background-color: orange;
+  background-color: gray;
   margin-bottom: 10px;
   width: 100px;
 }
@@ -56,17 +55,17 @@
   opacity: 1;
   text-decoration: none;
   color: white;
-  border: 1px solid orange;
-  background-color: orange;
+  border: 1px solid gray;
+  background-color: gray;
   text-decoration: none;
 }
 .btn-suspect {
   color: white;
-  border: 1px solid #3176A9;
+  border: 1px solid #E67E22;
   padding: 10px 10px;
   border-radius: 100px;
   opacity: 0.8;
-  background-color: #3176A9;
+  background-color: #E67E22;
   margin-bottom: 10px;
   width: 100px;
 }
@@ -74,6 +73,6 @@
   opacity: 1;
   text-decoration: none;
   color: white;
-  background-color: #3176A9;
+  background-color: #E67E22;
   text-decoration: none;
 }

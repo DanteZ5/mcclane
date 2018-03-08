@@ -10,10 +10,10 @@
   background-color: #17b978!important;
 }
 .bg-warning {
-  background-color: #E67E22!important;
+  background-color: gray!important;
 }
 .bg-suspect {
-  background-color: #0278AE!important;
+  background-color: #e67e22!important;
 }
 .bg-danger {
   background-color: #E43A19!important;
@@ -45,7 +45,7 @@
   transition: all 1s ease-out;
 }
 .bubble-pending {
-  background-color: #E67E22;
+  background-color: gray;
   height: 15px;
   width: 15px;
   border-radius: 50%;
@@ -59,7 +59,7 @@
 }
 
 .bubble-suspect {
-  background-color: #0278AE;
+  background-color: #E67E22;
   height: 15px;
   width: 15px;
   border-radius: 50%;
