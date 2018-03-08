@@ -5,19 +5,19 @@
   <div class="alert-step active">
     <div class="row">
       <div class="col-xs-12 col-sm-6">
-        <div class="card-show">
+        <div class="card-show-home">
           <h1 style="text-align: center;">Create a new alert</h1>
 
-          <div class="targeter">
-            <p>To sens a new SMS alert to your collaborators, select them with the tags below</p>
+          <div class="targeter" style="display: block;">
+            <p>To send a new SMS alert to your collaborators, select them with the tags below</p>
 
             <%= simple_form_for @event do |f| %>
             <%= f.fields_for :search do |search_form|  %>
 
             <div class="form-group">
-              <%= select_tag "area", options_from_collection_for_select(@continents + @countries + @cities, :name, :name), class: 'select2-area form-control tgt', multiple: true, label: "continent, country, city"%>
-            </div>
           </div>
+              <%= select_tag "area", options_from_collection_for_select(@continents + @countries + @cities, :name, :name), class: 'select2-area form-control', multiple: true, label: "continent, country, city"%>
+            </div>
           <!-- Input SMS part of the form -->
 
           <% end  %>
@@ -27,7 +27,7 @@
       </div>
 
       <div class="col-xs-12 col-sm-6">
-        <div class="card-show" style="padding: 25px;">
+        <div class="card-show-home" style="padding: 10px;">
           <h1 style="text-align: center;">Send to: <span id="collaborators-count"><%= current_user.collaborators.count  %></span>  collaborators</h1>
           <div id="men">
             <% current_user.collaborators.count.times do %>
@@ -41,9 +41,9 @@
 
     <div class="alert-step">
       <div class="col-xs-12 col-sm-6">
-        <div class="card-show" style="padding: 25px;">
+        <div class="card-show-home" style="padding: 10px;">
           <h1>Write your alert message</h1>
-              <p>Be explicit and remain under 160 characters</p>
+              <p style="margin-top: 100px;">Be explicit and remain under 160 characters</p>
               <%= f.fields_for :template do |template_form| %>
               <%= template_form.input :description, as: :text, label: false,
               input_html: { value:"An [EVENT PLEASE COMPLETE] occured, please answer '1' if you're safe" } %>
@@ -56,19 +56,22 @@
         </div>
       </div>
     <div class="col-xs-12 col-sm-6">
-        <div class="card-show" style="padding: 25px;">
-        <%#= image_tag "phone.png", class: "phone" %>
-      <div class="mess">
-        <div class="he"><span class="left">Messages</span>
-          <span class="name">McClane</span><span class="right">Contact</span>
+      <div class="card-show-home" style="padding: 25px 120px;">
+        <div class="phone-background">
+          <div class="line"></div>
+          <div class="mess">
+          <div class="he">
+            <span class="name">McClane</span>
+          </div>
+          <div class="messages-wrapper">
+            <br>
+            <div class="message to" style="text-align: right;"><%= current_user.company %> Safety System: [AN EVENT OCCURED], please answer '1' if you're safe</div>
+            <br>
+          </div>
+          </div>
+          <div class="home-button"></div>
         </div>
-        <div class="messages-wrapper">
-          <br>
-          <div class="message to" style="text-align: right;"><%= current_user.company %> Safety System: [AN EVENT OCCURED], please answer '1' if you're safe</div>
-          <br><br><br><br><br><br><br><br><br><br><br>
-          <br>
-        </div>
-      </div>
+
       </div>
       </div>
     </div>
