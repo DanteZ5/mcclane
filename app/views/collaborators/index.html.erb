@@ -1,7 +1,9 @@
 <%= flash[:notice] %>
 <br>
+
 <div class="container-fluid" style="margin: 10px;">
   <h1 style="text-align: center;">Collaborator's index</h1>
+
   <div class="card-show pull-right">
     <h4>Import new collaborators</h4>
     <%= form_tag import_collaborators_path, multipart: true do %>
