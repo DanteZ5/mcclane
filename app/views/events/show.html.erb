@@ -5,8 +5,8 @@
     <div class="row">
       <div class="col-xs-12 vertical-alignment">
         <ul id="ul-flex">
-          <li id="li-inline"><a class="inactive"><div class="rail-bubble-disabled-1">1</div> <p class="one">Collaborators selection</p></a></li><div class="line-left-inactive"></div>
-          <li id="li-inline"><a class="inactive"><div class="rail-bubble-disabled-2">2</div> <p class="two">SMS creation</p></a></li>
+          <li id="li-inline"><a class="active"><div class="rail-bubble-active-1">1</div> <p class="one">Collaborators selection</p></a></li><div class="line-left-active"></div>
+          <li id="li-inline"><a class="active"><div class="rail-bubble-active-2">2</div> <p class="two">SMS creation</p></a></li>
           <div class="line-right-active"></div>
           <li id="li-inline" ><a class="active"><div class="rail-bubble-active-3">3</div> <p class="three">Dashboard</p></a></li>
         </ul>
@@ -27,7 +27,13 @@
   <div id="sticky">
     <div class="row" style="margin-top: 10px">
       <div class="col-xs-12 title-event">
-        <p>EVENT NAME</p>
+        <h3>
+          <% if @event.status == "ongoing" %>
+            Ongoing alert
+          <% else %>
+            Alert closed the <%= Time.parse(@event.end_date).strftime("%d/%m/%Y")%>
+          <% end %>
+        </h3>
       </div>
     </div>
     <!-- Progress bar -->
