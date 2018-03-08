@@ -145,5 +145,8 @@ position: relative;
 .select2-results__options {
     display: flex !important;
     flex-direction: column !important;
-    max-width: 80% !important;
 }
+.select2 {
+width:100%!important;
+}
+
