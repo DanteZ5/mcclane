@@ -11,7 +11,7 @@
           <div class="targeter" style="display: block;">
             <p>To send a new SMS alert to your collaborators, select them with the tags below</p>
 
-            <%= simple_form_for @event do |f| %>
+            <%= simple_form_for @event, data: { confirm: "Do you really want to send this message?" } do |f| %>
             <%= f.fields_for :search do |search_form|  %>
 
             <div class="form-group">
@@ -50,8 +50,8 @@
               <% end %>
 
               <div class="form-actions">
-                <%= f.submit "Send", class: "btn-main btn-absolute", data: { confirm: 'Do you really want to send this message?' } %>
-                <% end %>
+                <%= f.submit "Send", class: "btn-main btn-absolute" %>
+              <% end %>
             </div>
         </div>
       </div>
