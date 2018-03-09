@@ -94,7 +94,8 @@ class EventsController < ApplicationController
     suspect = @event.colevents.where(safe: 'suspect').count
     total_collaborators = @event.collaborators.count
 
-    @template_labels = ["First message sent", "Phone call after 1 min", "SMS sent after 3 min", "Answer if safe", "Answer if suspect"]
+    @template_labels = {1 => "Phone call after 1 min", 2 => "SMS sent after 3 min"}
+    @templates = @event.templates.where(order: [1, 2]).order(:order)
 
     if total_collaborators == 0
       redirect_to new_event_path
