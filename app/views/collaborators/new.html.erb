@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col xs-12 col-sm-6 col-md-4 col-md-offset-4">
+    <%= simple_form_for @collaborator, url: collaborators_path, method: :post do |f| %>
+    <%= f.input :email %>
+    <%= f.input :phone_pro %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :continent %>
+    <%= f.input :country %>
+    <%= f.input :city %>
+    <%= f.submit "create", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+</div>

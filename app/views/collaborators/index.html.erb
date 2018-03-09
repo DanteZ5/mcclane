@@ -7,9 +7,10 @@
     <%= form_tag import_collaborators_path, multipart: true do %>
     <%= file_field_tag :file %>
     <%= submit_tag "Import CSV", class:"btn-main" %>
+    <%= link_to "Add a collaborator", new_collaborator_path, class:"btn-main" %>
     <% end %>
   </div>
-  <div class="form-group pull-left">
+  <div class="form-group pull-down">
     <input type="text" class="search form-control" placeholder="Filter">
   </div>
   <span class="counter pull-left"></span>
@@ -35,7 +36,6 @@
       <tbody>
         <% @collaborators.each do |collaborator| %>
         <tr>
-
           <td class="center-headers"><%= collaborator.email %></td>
           <td class="center-headers"><%= collaborator.phone_pro %></td>
         <!--   <td class="center-headers"><%= collaborator.phone_perso %></td> -->
