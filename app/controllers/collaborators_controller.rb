@@ -43,7 +43,8 @@ class CollaboratorsController < ApplicationController
     @collaborator = Collaborator.new(collaborator_params)
     @collaborator.user_id = user.id
     if @collaborator.save
-      @collaborators = Collaborator.all
+      ev = Collaborator.arel_table
+      @collaborators = Collaborator.where(ev[:user_id].eq(current_user.id))
       authorize @collaborator
       render :index
     else
