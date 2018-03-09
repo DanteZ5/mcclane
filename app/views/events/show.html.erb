@@ -5,12 +5,12 @@
     <div class="row">
       <div class="col-xs-12 vertical-alignment">
         <ul id="ul-flex">
-          <li id="li-inline"><a class="inactive"><div class="rail-bubble-disabled-1">1</div> <p class="one">Collaborators selection</p></a></li><div class="line-left-inactive"></div>
-          <li id="li-inline"><a class="inactive"><div class="rail-bubble-disabled-2">2</div> <p class="two">SMS creation</p></a></li>
+          <li id="li-inline"><a class="active"><div class="rail-bubble-active-1">1</div> <p class="one">Collaborators selection</p></a></li><div class="line-left-active"></div>
+          <li id="li-inline"><a class="active"><div class="rail-bubble-active-2">2</div> <p class="two">SMS creation</p></a></li>
           <div class="line-right-active"></div>
           <li id="li-inline" ><a class="active"><div class="rail-bubble-active-3">3</div> <p class="three">Dashboard</p></a></li>
         </ul>
-        <div class="event">
+        <div class="event" >
           <% if @event.status == "ongoing" %>
           <%= link_to 'Close event', close_event_path(@event), method: :patch, class: "close-event", data: { confirm: 'Do you really want to close this event?' }  %>
           <% else %>
@@ -27,7 +27,13 @@
   <div id="sticky">
     <div class="row" style="margin-top: 10px">
       <div class="col-xs-12 title-event">
-        <p>EVENT NAME</p>
+        <h3>
+          <% if @event.status == "ongoing" %>
+            Ongoing alert
+          <% else %>
+            Alert closed the <%= Time.parse(@event.end_date).strftime("%d/%m/%Y")%>
+          <% end %>
+        </h3>
       </div>
     </div>
     <!-- Progress bar -->
@@ -45,7 +51,7 @@
     </div>
   </div>
   <!-- Collaborators table with inline status -->
-  <div class="table-space">
+  <div class="table-space" style = "width: inherit; text-align: center;">
     <table class="table table-dark table-hover results table-responsive">
       <thead>
         <tr>
@@ -64,7 +70,7 @@
        <% @colevents.each do |c| %>
        <!-- Collaborator statuts-name modal call -->
        <%= render partial: "shared/collaborator_view_message",
-       locals: {collaborator: c.collaborator, colevent: c, message: c.messages.last} %>
+       locals: {collaborator: c.collaborator, colevent: c, message: c.messages.where(destination: 'inbound').last} %>
        <%= render partial: "shared/collaborator_status_change",
        locals: {collaborator: c.collaborator, safe: c.safe, colevent: c} %>
        <%= render partial: "shared/send_specific_sms",

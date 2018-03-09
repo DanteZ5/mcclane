@@ -145,5 +145,16 @@ position: relative;
 .select2-results__options {
     display: flex !important;
     flex-direction: column !important;
-    max-width: 80% !important;
+}
+.select2 {
+width:100%!important;
+}
+.mess1 {
+    margin: 50px auto;
+    background: none repeat scroll 0 0 #fff;
+    color: #FFFFFF;
+    font-family: "Open Sans";
+    line-height: 26px;
+    width: 350px;
+    overflow-X: hidden;
 }

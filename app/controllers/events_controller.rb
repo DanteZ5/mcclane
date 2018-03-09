@@ -50,11 +50,11 @@ class EventsController < ApplicationController
       # Si save, cree plusieurs instances template
       message_content = params[:event][:template][:description]
       Template.create(content: message_content, event: @event, slot: 0, order: 0)
-      Template.create(content: "You've received a text message about a situation, please answer to the message", event: @event, slot: 1, order: 1)
+      Template.create(content: "You have just received an alert text message. Please answer the message", event: @event, slot: 1, order: 1)
       Template.create(content: "IMPORTANT, Answer '1' if you're safe", event: @event, slot: 3, order: 2)
       # answers
       Template.create(content: "Thank you, we're glad to know you're safe", event: @event, slot: 0, order: 3)
-      Template.create(content: "We just received your message. If you're safe, send 1. If you have any trouble : call 911 then we contact you as soon as possible", event: @event, slot: 0, order: 4)
+      Template.create(content: "We just received your message. If you're safe, send 1. If you have any trouble, please call 911. We will contact you as soon as possible", event: @event, slot: 0, order: 4)
 
       # ne target que les collabs selectionnes
       areas = params[:area]
