@@ -129,7 +129,8 @@ class EventsController < ApplicationController
 
   def edit_messages
     authorize @event
-    @event.templates.each_with_index do |t, i|
+    @templates = @event.templates.where(order: [1, 2]).order(:order)
+    @templates.each_with_index do |t, i|
       t.update(content: params[:event][:templates_attributes]["#{i}"]["content"])
     end
 
