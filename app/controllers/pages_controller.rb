@@ -24,8 +24,8 @@ class PagesController < ApplicationController
     user = User.where(email: "demo@lewagon.org").first
     collaborator.email = "#{collaborator.first_name}@lewagon.org"
     collaborator.user_id = user.id
-    collaborator.country = "France"
-    collaborator.city = "Paris"
+    collaborator.country = "Indonesia"
+    collaborator.city = "Bali"
     collaborator.save
     redirect_to thanks_path
   end
