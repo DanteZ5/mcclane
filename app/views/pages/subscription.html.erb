@@ -2,14 +2,15 @@
   <div class="main-container">
     <div class="card-show">
       <%= image_tag "logo.png", height: 180 %>
-      <h1>Collaborator</h1>
+      <h1>Subscriptions are closed</h1>
+      <h3>You may contact us with slack</h3>
 
-      <%= simple_form_for @collaborator, url: subscription_path, method: :post do |f| %>
-        <%= f.input :first_name %>
-        <%= f.input :last_name %>
-        <%= f.input :phone_pro %>
-        <%= f.submit "Add my number", class: "btn btn-primary" %>
-      <% end %>
+      <%#= simple_form_for @collaborator, url: subscription_path, method: :post do |f| %>
+        <%#= f.input :first_name %>
+        <%#= f.input :last_name %>
+        <%#= f.input :phone_pro %>
+        <%#= f.submit "Add my number", class: "btn btn-primary" %>
+      <%# end %>
     </div>
   </div>
 </div>
