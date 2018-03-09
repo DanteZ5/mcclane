@@ -1,6 +1,11 @@
 class CollaboratorsController < ApplicationController
-  skip_after_action :verify_authorized, only: [:count, :import]
-  after_action :verify_policy_scoped, only: [:count, :import]
+  skip_after_action :verify_authorized, only: [:count, :import, :create]
+  after_action :verify_policy_scoped, only: [:count, :import, :create]
+
+  def new
+    @collaborator = Collaborator.new
+    authorize @collaborator
+  end
 
   def index
     @events = policy_scope(Event)
@@ -33,6 +38,19 @@ class CollaboratorsController < ApplicationController
     authorize @collaborator
   end
 
+  def create
+    user = current_user
+    @collaborator = Collaborator.new(collaborator_params)
+    @collaborator.user_id = user.id
+    if @collaborator.save
+      @collaborators = Collaborator.all
+      authorize @collaborator
+      render :index
+    else
+      render :new
+    end
+  end
+
   def update
     @collaborator = Collaborator.find(params[:id])
     authorize @collaborator
@@ -50,7 +68,8 @@ class CollaboratorsController < ApplicationController
   private
 
   def collaborator_params
-    authorize @collaborator
+    collaborators = policy_scope(Collaborator)
+    # authorize @collaborator
     params.require(:collaborator).permit(:email, :phone_pro, :first_name, :last_name, :continent, :country, :city)
   end
 

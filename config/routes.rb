@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   root to: "pages#guide"
 
-  resources :collaborators do
+  resources :collaborators, except: [:index] do
     collection do
       get :count
       get :index
